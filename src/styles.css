@@ -1,0 +1,70 @@
+body {
+  font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+}
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/* Forms */
+
+form h4 {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 0;
+}
+.sub-header {
+  text-align: center;
+}
+.plus_minus_wrapper {
+  display: flex;
+}
+
+.plus_minus_wrapper .btn {
+  margin: auto;
+  background-color: transparent;
+  padding: 6px 0;
+}
+
+.plus_minus_wrapper .fa-minus-square {
+  color: darkred;
+}
+.plus_minus_wrapper .fa-minus-square:hover {
+  color: red;
+}
+
+.plus_minus_wrapper .fa-plus-square {
+  color: darkgreen;
+}
+.plus_minus_wrapper .fa-plus-square:hover {
+  color: green;
+}
+
+/* Buttons */
+
+.btn.btn-default {
+  border-radius: 0;
+}
+
+.btn.btn-default {
+  background-color: #1c2a3d;
+  color: #eeeeee;
+  font-weight: bold;
+  text-shadow: none;
+  background-image: none;
+  border-radius: 0;
+  float: none;
+}
+.btn.btn-primary {
+  background-color: #033389;
+  color: #eeeeee;
+  font-weight: bold;
+  text-shadow: none;
+  background-image: none;
+  border-radius: 0;
+  float: none;
+}
+.btn.btn-default:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}

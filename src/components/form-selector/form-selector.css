@@ -1,0 +1,24 @@
+/* Form Selector Button Group */
+.form-selector.btn-group {
+  background-color: #1c2a3d;
+  display: flex;
+  justify-content: center;
+  padding: 0.2rem 0;
+}
+
+.form-selector .btn.btn-default {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #eeeeee;
+  font-weight: bold;
+  text-shadow: none;
+  border-color: #1c2a3d;
+  border-width: 0.4rem;
+  background-image: none;
+  border-radius: 0;
+  float: none;
+  margin: 0 3rem;
+}
+
+.form-selector .btn.btn-default:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}

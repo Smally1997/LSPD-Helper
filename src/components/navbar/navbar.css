@@ -1,0 +1,57 @@
+/* Navbar General */
+#navbar {
+  display: flex;
+  padding: 0 2rem;
+  background-color: #1c2a3d;
+}
+
+/* Nav Section */
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.nav-section .icon {
+  width: 3rem;
+}
+
+.nav-section .text {
+  line-height: normal;
+}
+
+/* Nav Items Group*/
+.nav-items {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.nav-items .nav-section {
+  margin-right: 3rem;
+}
+
+/* Nav Item */
+.nav-section .text a {
+  color: #7f7f7f;
+  font-weight: bold;
+}
+
+.nav-section .text a:hover {
+  color: #e5e5e5;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Misc */
+#navbar .user {
+  margin-left: auto;
+}
+
+/* Nav Item Icon */
+.navItemIcon {
+  margin-bottom: 0.5rem;
+  color: #d5d5d5;
+  font-size: 2rem;
+}
