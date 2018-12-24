@@ -21,7 +21,9 @@ class User extends Component {
             <div id="page">
               <h1 className="header">
                 {user.rank} {user.firstName} {user.lastName}
-                {user.serial != "" && `(#${user.serial})`}
+                {user.serial != null &&
+                  user.serial != "" &&
+                  `(#${user.serial})`}
               </h1>
               <form>
                 <div className="form-row">
