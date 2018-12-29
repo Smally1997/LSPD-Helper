@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import CategoryPage from "../category-page/category-page";
 import FieldInterviewCardForm from "./field_interview_cards/field_interview_card_form";
+import FieldInterviewResponseCardForm from "./field_interview_cards/field_interview_card_response_form";
 import IntelligenceReportForm from "./intelligence_reports/intelligence_report_form";
 import InvestigativeReportForm from "./investigative_reports/investigative_report_form";
 const formItems = [
@@ -18,6 +19,11 @@ const formItems = [
     text: "FIELD INTERVIEW CARD",
     id: "fieldInterviewCard",
     form: FieldInterviewCardForm
+  },
+  {
+    text: "FIELD INTERVIEW RESPONSE",
+    id: "fieldInterviewResponse",
+    form: FieldInterviewResponseCardForm
   }
 ];
 class Reports extends Component {
