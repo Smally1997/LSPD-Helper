@@ -5,10 +5,10 @@ import "./navbar.css";
 const NavbarSection = ({ text, iconFontAwesome, link }) => {
   return (
     <div className="nav-section">
-      <i className={`${iconFontAwesome} navItemIcon`} />
-      <div className="text">
-        <Link to={link}>{text}</Link>
-      </div>
+      <Link to={link}>
+        <i className={`${iconFontAwesome} navItemIcon`} />
+        <div className="text">{text}</div>
+      </Link>
     </div>
   );
 };
@@ -25,6 +25,13 @@ const Navbar = ({ user }) => {
           text={"WARRANTS"}
           iconFontAwesome={"fas fa-gavel"}
           link={"/warrants"}
+        />
+      </div>
+      <div className="home">
+        <NavbarSection
+          text={"LSPD HELPER"}
+          iconFontAwesome={"fas fa-building"}
+          link={"/"}
         />
       </div>
       <div className="user">

@@ -18,7 +18,13 @@
   border-radius: 0;
   float: none;
   margin: 0 3rem;
-  width: 100%;
+  min-width: 18rem;
+}
+
+@media screen and (max-width: 561.98px) {
+  .form-selector .btn.btn-default {
+    width: 100%;
+  }
 }
 
 .form-selector .btn.btn-default:hover {

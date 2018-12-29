@@ -7,7 +7,7 @@ const formItems = [
   { text: "SEARCH WARRANT", id: "searchWarrant", form: SearchWarrantForm },
   { text: "ARREST WARRANT", id: "arrestWarrant", form: ArrestWarrantForm },
   {
-    text: "COVERT SURVEILLANCE ORDER",
+    text: "SURVEILLANCE ORDER",
     id: "covertSurveillanceOrder",
     form: CovertSurveillanceOrderForm
   }

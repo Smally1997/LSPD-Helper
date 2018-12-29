@@ -24,6 +24,7 @@
 /* Nav Items Group*/
 .nav-items {
   display: flex;
+  flex: 1;
   justify-content: flex-start;
   width: 100%;
 }
@@ -33,20 +34,28 @@
 }
 
 /* Nav Item */
-.nav-section .text a {
+.nav-section a {
   color: #7f7f7f;
   font-weight: bold;
+  text-align: center;
 }
 
-.nav-section .text a:hover {
+.nav-section a:hover {
   color: #e5e5e5;
   font-weight: bold;
   text-decoration: none;
 }
 
 /* Misc */
+#navbar .home {
+  flex: 1;
+  justify-self: center;
+}
 #navbar .user {
-  margin-left: auto;
+  display: flex;
+  flex: 1;
+  justify-self: flex-end;
+  justify-content: flex-end;
 }
 
 /* Nav Item Icon */

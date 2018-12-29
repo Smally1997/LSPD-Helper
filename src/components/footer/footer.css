@@ -1,6 +1,23 @@
 #footer {
   text-align: center;
   font-size: 0.9rem;
-  background-color: #7f7f7f;
-  height: 1rem;
+  background-color: #1c2a3d;
+  color: white;
+  height: 1.5rem;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+#footer a:hover {
+  color: white;
+  font-style: italic;
+}
+
+.footer-item.left {
+  justify-self: flex-start;
 }
