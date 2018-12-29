@@ -1,3 +1,5 @@
+import React from "react";
+var moment = require("moment");
 export const generateArrestWarrant = (params, userContext) => {
   const chargeString = charges => {
     let str = ``;
@@ -15,6 +17,7 @@ export const generateArrestWarrant = (params, userContext) => {
     });
     return str;
   };
+
   let frmString = `[divbox=white]⠀
 [center][img]http://i.imgur.com/I81A1Uo.png[/img] [img]https://i.imgur.com/fHcUHG4.png[/img]
 
@@ -39,7 +42,9 @@ export const generateArrestWarrant = (params, userContext) => {
 
 [hr][/hr]
 [u][b]Narrative[/b][/u]
-[list=none][b]Date and Time:[/b] ${params.date} - ${params.time}
+[list=none][b]Date and Time:[/b] ${moment(params.date).format(
+    "DD/MMM/YYYY"
+  )} - ${params.time}
 [b]Location:[/b] ${params.location}
 [b]Details:[/b] [list=none][b]I, ${userContext.firstName} ${
     userContext.lastName

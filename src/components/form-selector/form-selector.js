@@ -1,5 +1,13 @@
 import React, { Component } from "react";
 import "./form-selector.css";
+
+function highlightFormLink(e) {
+  let currentActiveFormLink = document.querySelector(".activeFormLink");
+  if (currentActiveFormLink != null) {
+    currentActiveFormLink.classList.remove("activeFormLink");
+  }
+  e.target.classList.toggle("activeFormLink");
+}
 const FormBox = ({ form }) => {
   return <div className="form-box" />;
 };
@@ -11,6 +19,7 @@ const FormLink = ({ text, id, changeActiveForm }) => {
       className="btn btn-default"
       onClick={e => {
         changeActiveForm(e, id);
+        highlightFormLink(e);
       }}
     >
       {text}

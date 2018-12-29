@@ -15,7 +15,11 @@ main {
 }
 
 /* Forms */
-
+form {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+}
 form h4 {
   text-align: center;
   font-weight: bold;

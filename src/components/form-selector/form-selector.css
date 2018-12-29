@@ -18,8 +18,13 @@
   border-radius: 0;
   float: none;
   margin: 0 3rem;
+  width: 100%;
 }
 
 .form-selector .btn.btn-default:hover {
   background-color: rgba(0, 0, 0, 0.9);
+}
+
+.form-selector .btn.btn-default.activeFormLink {
+  background-color: #033388;
 }

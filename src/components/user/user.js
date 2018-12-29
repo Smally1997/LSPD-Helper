@@ -25,6 +25,7 @@ class User extends Component {
                   user.serial != "" &&
                   `(#${user.serial})`}
               </h1>
+              <p className="small sub-header">All changes auto save.</p>
               <form>
                 <div className="form-row">
                   <div className="form-group col-xs-12 col-sm-6">

@@ -6,7 +6,7 @@ import {
   generateArrestWarrantTitle
 } from "../../../forms/frm_arrestWarrant.js";
 import BBCode from "../../bbCode/bbCode.js";
-import "./arrest_warrant_form.css";
+
 const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
   return (
     <div>
@@ -15,7 +15,7 @@ const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
         return (
           <div className="form-row" key={`charge_${index}`}>
             <div className="form-group col-xs-6">
-              <label for={`chargeName_${index}`}>Charge #{index + 1}</label>
+              <label htmlFor={`chargeName_${index}`}>Charge #{index + 1}</label>
               <input
                 type="text"
                 className="form-control"
@@ -25,7 +25,7 @@ const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
               />
             </div>
             <div className="form-group col-xs-3">
-              <label for={`counts_${index}`}>Counts</label>
+              <label htmlFor={`counts_${index}`}>Counts</label>
 
               <input
                 type="number"
@@ -84,7 +84,7 @@ const Evidence = ({
         return (
           <div className="form-row" key={`evidence_${index}`}>
             <div className="form-group col-xs-9">
-              <label for={`evidenceDescription_${index}`}>
+              <label htmlFor={`evidenceDescription_${index}`}>
                 Exhibit #{index + 1}
               </label>
               <input
@@ -220,14 +220,14 @@ class ArrestWarrantForm extends Component {
               <h4>Warrant Type</h4>
               <div className="form-row">
                 <div className="form-group col-xs-12">
-                  <label for="warrantType">L-RAW/H-RAW</label>
+                  <label htmlFor="warrantType">L-RAW/H-RAW</label>
                   <select
                     className="custom-select form-control"
                     id="warrantType"
                     onChange={e => this.handleFormInput(e)}
                     value={this.state.warrantType}
                   >
-                    <option selected>CHOOSE ONE</option>
+                    <option value="CHOOSE ONE">CHOOSE ONE</option>
                     <option value="L-RAW">L-RAW</option>
                     <option value="H-RAW">H-RAW</option>
                   </select>
@@ -239,7 +239,7 @@ class ArrestWarrantForm extends Component {
               </p>
               <div className="form-row">
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="affFirstName">First Name</label>
+                  <label htmlFor="affFirstName">First Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -250,7 +250,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="affLastName">Last Name</label>
+                  <label htmlFor="affLastName">Last Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -263,7 +263,7 @@ class ArrestWarrantForm extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="affSerial">Serial Number</label>
+                  <label htmlFor="affSerial">Serial Number</label>
                   <input
                     type="text"
                     className="form-control"
@@ -274,7 +274,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="affRank">Dept. Rank</label>
+                  <label htmlFor="affRank">Dept. Rank</label>
                   <input
                     type="text"
                     className="form-control"
@@ -288,7 +288,7 @@ class ArrestWarrantForm extends Component {
               <h4>Suspect Details</h4>
               <div className="form-row">
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="susFirstName">First Name</label>
+                  <label htmlFor="susFirstName">First Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -299,7 +299,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="susLastName">Last Name</label>
+                  <label htmlFor="susLastName">Last Name</label>
                   <input
                     type="text"
                     className="form-control"
@@ -312,7 +312,7 @@ class ArrestWarrantForm extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="susGender">Gender</label>
+                  <label htmlFor="susGender">Gender</label>
                   <input
                     type="text"
                     className="form-control"
@@ -323,7 +323,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="susPhone">Phone Number</label>
+                  <label htmlFor="susPhone">Phone Number</label>
                   <input
                     type="text"
                     className="form-control"
@@ -337,7 +337,7 @@ class ArrestWarrantForm extends Component {
               <h4>Narrative</h4>
               <div className="form-row">
                 <div className="form-group col-xs-12 col-sm-3">
-                  <label for="date">Date</label>
+                  <label htmlFor="date">Date</label>
                   <input
                     type="date"
                     className="form-control"
@@ -347,7 +347,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-3">
-                  <label for="time">Time</label>
+                  <label htmlFor="time">Time</label>
                   <input
                     type="time"
                     className="form-control"
@@ -357,7 +357,7 @@ class ArrestWarrantForm extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label for="location">Location</label>
+                  <label htmlFor="location">Location</label>
                   <input
                     type="text"
                     className="form-control"
@@ -369,7 +369,7 @@ class ArrestWarrantForm extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-xs-12">
-                  <label for="details">Details</label>
+                  <label htmlFor="details">Details</label>
                   <textarea
                     className="form-control text-area"
                     id="details"
@@ -409,7 +409,7 @@ class ArrestWarrantForm extends Component {
               <h4>Signature</h4>
               <div className="form-row">
                 <div className="form-group col-xs-12">
-                  <label for="signature">Signature</label>
+                  <label htmlFor="signature">Signature</label>
                   {user.signatureType == "text" && (
                     <input
                       type="text"

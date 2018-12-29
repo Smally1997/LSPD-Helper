@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { UserContextConsumer } from "../../../UserContext.js";
 import {
-  generateSearchWarrant,
-  generateSearchWarrantTitle
-} from "../../../forms/frm_searchWarrant.js";
+  generateCovertSurveillanceOrder,
+  generateCovertSurveillanceOrderTitle
+} from "../../../forms/frm_covertSurveillanceOrder.js";
 import BBCode from "../../bbCode/bbCode.js";
 
-const SearchProperties = ({
+const SurveillanceProperties = ({
   properties,
   handleFormInput,
   addProperty,
@@ -17,16 +17,16 @@ const SearchProperties = ({
       {properties.map(property => {
         const index = properties.indexOf(property);
         return (
-          <div className="form-row" key={`searchProperty_${index}`}>
+          <div className="form-row" key={`property_${index}`}>
             <div className="form-group col-xs-9">
-              <label htmlFor={`searchPropertyDescription_${index}`}>
+              <label htmlFor={`propertyDescription_${index}`}>
                 Property/Premises #{index + 1}
               </label>
               <input
                 type="text"
                 className="form-control"
-                id={`searchPropertyDescription_${index}`}
-                value={properties[index].searchPropertyDescription}
+                id={`propertyDescription_${index}`}
+                value={properties[index].propertyDescription}
                 onChange={e => handleFormInput(e)}
               />
             </div>
@@ -40,7 +40,7 @@ const SearchProperties = ({
                     className="btn"
                     type="button"
                     onClick={e => {
-                      removeProperty(e, "searchProperty", index);
+                      removeProperty(e, "surveillanceProperty", index);
                     }}
                   >
                     <i className="fas fa-minus-square" />
@@ -52,7 +52,7 @@ const SearchProperties = ({
                   className="btn"
                   type="button"
                   onClick={e => {
-                    addProperty(e, "searchProperty");
+                    addProperty(e, "surveillanceProperty");
                   }}
                 >
                   <i className="fas fa-plus-square" />
@@ -66,27 +66,27 @@ const SearchProperties = ({
   );
 };
 
-const ConcealedProperties = ({
-  properties,
+const PeopleOrPersons = ({
+  peopleOrPersons,
   handleFormInput,
-  addProperty,
-  removeProperty
+  addPeopleOrPersons,
+  removePeopleOrPersons
 }) => {
   return (
     <div>
-      {properties.map(property => {
-        const index = properties.indexOf(property);
+      {peopleOrPersons.map(peopleOrPerson => {
+        const index = peopleOrPersons.indexOf(peopleOrPerson);
         return (
-          <div className="form-row" key={`concealedProperty_${index}`}>
+          <div className="form-row" key={`peopleOrPerson_${index}`}>
             <div className="form-group col-xs-9">
-              <label htmlFor={`concealedPropertyDescription_${index}`}>
-                Property/Premises #{index + 1}
+              <label htmlFor={`peopleOrPerson_${index}`}>
+                People/Person #{index + 1}
               </label>
               <input
                 type="text"
                 className="form-control"
-                id={`concealedPropertyDescription_${index}`}
-                value={properties[index].concealedPropertyDescription}
+                id={`peopleOrPerson_${index}`}
+                value={peopleOrPersons[index].peopleOrPerson}
                 onChange={e => handleFormInput(e)}
               />
             </div>
@@ -100,7 +100,7 @@ const ConcealedProperties = ({
                     className="btn"
                     type="button"
                     onClick={e => {
-                      removeProperty(e, "concealedProperty", index);
+                      removePeopleOrPersons(e, "peopleOrPerson", index);
                     }}
                   >
                     <i className="fas fa-minus-square" />
@@ -112,7 +112,7 @@ const ConcealedProperties = ({
                   className="btn"
                   type="button"
                   onClick={e => {
-                    addProperty(e, "concealedProperty");
+                    addPeopleOrPersons(e, "peopleOrPerson");
                   }}
                 >
                   <i className="fas fa-plus-square" />
@@ -243,13 +243,13 @@ const Facts = ({ facts, addFact, removeFact, handleFormInput }) => {
   );
 };
 
-class SearchWarrantForm extends Component {
+class CovertSurveillanceOrderForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       affDivision: null,
-      searchProperties: [{ searchPropertyDescription: null }],
-      concealedProperties: [{ concealedPropertyDescription: null }],
+      surveillanceProperties: [{ propertyDescription: null }],
+      peopleOrPersons: [{ peopleOrPerson: null }],
       charges: [{ chargeName: null, counts: null }],
       facts: [{ fact: null }],
       date: null
@@ -263,23 +263,25 @@ class SearchWarrantForm extends Component {
     const { id, value } = e.target;
     const field = id.substring(0, id.indexOf("_"));
     const index = id.substring(id.indexOf("_") + 1);
-    if (id.includes("searchPropertyDescription")) {
+    if (id.includes("propertyDescription")) {
       this.setState(prevState => ({
-        searchProperties: prevState.searchProperties.map(property => {
-          if (prevState.searchProperties.indexOf(property) == index) {
-            return Object.assign(property, { [field]: value });
-          } else {
-            return property;
+        surveillanceProperties: prevState.surveillanceProperties.map(
+          property => {
+            if (prevState.surveillanceProperties.indexOf(property) == index) {
+              return Object.assign(property, { [field]: value });
+            } else {
+              return property;
+            }
           }
-        })
+        )
       }));
-    } else if (id.includes("concealedPropertyDescription")) {
+    } else if (id.includes("peopleOrPerson")) {
       this.setState(prevState => ({
-        concealedProperties: prevState.concealedProperties.map(property => {
-          if (prevState.concealedProperties.indexOf(property) == index) {
-            return Object.assign(property, { [field]: value });
+        peopleOrPersons: prevState.peopleOrPersons.map(peopleOrPerson => {
+          if (prevState.peopleOrPersons.indexOf(peopleOrPerson) == index) {
+            return Object.assign(peopleOrPerson, { [field]: value });
           } else {
-            return property;
+            return peopleOrPerson;
           }
         })
       }));
@@ -309,16 +311,16 @@ class SearchWarrantForm extends Component {
   }
 
   addInputBox(e, type) {
-    if (type === "searchProperty") {
-      let newProperty = { searchPropertyDescription: null };
-      let { searchProperties } = this.state;
-      searchProperties.push(newProperty);
-      this.setState({ searchProperties });
-    } else if (type === "concealedProperty") {
-      let newProperty = { concealedPropertyDescription: null };
-      let { concealedProperties } = this.state;
-      concealedProperties.push(newProperty);
-      this.setState({ concealedProperties });
+    if (type === "surveillanceProperty") {
+      let newProperty = { propertyDescription: null };
+      let { surveillanceProperties } = this.state;
+      surveillanceProperties.push(newProperty);
+      this.setState({ surveillanceProperties });
+    } else if (type === "peopleOrPerson") {
+      let newPeopleOrPerson = { peopleOrPerson: null };
+      let { peopleOrPersons } = this.state;
+      peopleOrPersons.push(newPeopleOrPerson);
+      this.setState({ peopleOrPersons });
     } else if (type === "charges") {
       let newCharge = { chargeName: null, counts: null };
       let { charges } = this.state;
@@ -333,14 +335,14 @@ class SearchWarrantForm extends Component {
   }
 
   removeInputBox(e, type, index) {
-    if (type === "searchProperty") {
-      let { searchProperties } = this.state;
-      searchProperties.splice(index, 1);
-      this.setState([searchProperties]);
-    } else if (type === "concealedProperty") {
-      let { concealedProperties } = this.state;
-      concealedProperties.splice(index, 1);
-      this.setState([concealedProperties]);
+    if (type === "surveillanceProperty") {
+      let { surveillanceProperties } = this.state;
+      surveillanceProperties.splice(index, 1);
+      this.setState([surveillanceProperties]);
+    } else if (type === "peopleOrPerson") {
+      let { peopleOrPersons } = this.state;
+      peopleOrPersons.splice(index, 1);
+      this.setState([peopleOrPersons]);
     } else if (type === "charges") {
       let { charges } = this.state;
       charges.splice(index, 1);
@@ -354,8 +356,8 @@ class SearchWarrantForm extends Component {
 
   render() {
     const {
-      searchProperties,
-      concealedProperties,
+      surveillanceProperties,
+      peopleOrPersons,
       charges,
       facts
     } = this.state;
@@ -431,9 +433,9 @@ class SearchWarrantForm extends Component {
                   />
                 </div>
               </div>
-              <h4>Search Properties</h4>
-              <SearchProperties
-                properties={searchProperties}
+              <h4>Surveillance Properties</h4>
+              <SurveillanceProperties
+                properties={surveillanceProperties}
                 addProperty={(e, type) => {
                   this.addInputBox(e, type);
                 }}
@@ -444,13 +446,13 @@ class SearchWarrantForm extends Component {
                   this.handleFormInput(e);
                 }}
               />
-              <h4>Concealed Properties/Premises</h4>
-              <ConcealedProperties
-                properties={concealedProperties}
-                addProperty={(e, type) => {
+              <h4>People Or Persons</h4>
+              <PeopleOrPersons
+                peopleOrPersons={peopleOrPersons}
+                addPeopleOrPersons={(e, type) => {
                   this.addInputBox(e, type);
                 }}
-                removeProperty={(e, type, index) => {
+                removePeopleOrPersons={(e, type, index) => {
                   this.removeInputBox(e, type, index);
                 }}
                 handleFormInput={e => {
@@ -503,8 +505,8 @@ class SearchWarrantForm extends Component {
               </div>
               <BBCode
                 state={this.state}
-                generateTitleFunction={generateSearchWarrantTitle}
-                generateBodyFunction={generateSearchWarrant}
+                generateTitleFunction={generateCovertSurveillanceOrderTitle}
+                generateBodyFunction={generateCovertSurveillanceOrder}
               />
             </form>
           );
@@ -514,4 +516,4 @@ class SearchWarrantForm extends Component {
   }
 }
 
-export default SearchWarrantForm;
+export default CovertSurveillanceOrderForm;

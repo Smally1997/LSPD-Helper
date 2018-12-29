@@ -2,14 +2,14 @@ import React, { Component, Fragment } from "react";
 import CategoryPage from "../category-page/category-page";
 import ArrestWarrantForm from "./arrest_warrants/arrest_warrant_form";
 import SearchWarrantForm from "./search_warrants/search_warrant_form";
-import SurveillanceOrderForm from "./surveillance_order/surveillance_order_form";
+import CovertSurveillanceOrderForm from "./covert_surveillance_order/covert_surveillance_order_form";
 const formItems = [
   { text: "SEARCH WARRANT", id: "searchWarrant", form: SearchWarrantForm },
   { text: "ARREST WARRANT", id: "arrestWarrant", form: ArrestWarrantForm },
   {
-    text: "SURVEILLANCE ORDER",
-    id: "surveillanceOrder",
-    form: SurveillanceOrderForm
+    text: "COVERT SURVEILLANCE ORDER",
+    id: "covertSurveillanceOrder",
+    form: CovertSurveillanceOrderForm
   }
 ];
 
