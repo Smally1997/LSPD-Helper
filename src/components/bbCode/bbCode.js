@@ -58,7 +58,7 @@ class BBCode extends Component {
                 </div>
               </div>
               <div className="form-row">
-                <div className="input-group">
+                <div className="input-group form-group">
                   <textarea
                     className="form-control"
                     readOnly={true}

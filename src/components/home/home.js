@@ -37,6 +37,11 @@ const Home = () => {
         <a href="https://pd.lsgov.io/forum/ucp.php?i=pm&mode=compose&u=71969">
           private message on the LSPD forums.
         </a>{" "}
+        For feedback, suggestions, etc, feel free to{" "}
+        <a href="https://pd.lsgov.io/forum/viewtopic.php?f=110&t=253797#p1732574">
+          reply to the thread
+        </a>
+        !
       </p>
     </div>
   );
