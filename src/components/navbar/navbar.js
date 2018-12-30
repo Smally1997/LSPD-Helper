@@ -1,13 +1,27 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
-
+function highlightNavLink(e) {
+  console.log(e.parents);
+  let currentActiveNavLink = document.querySelector(".activeNavLink");
+  if (currentActiveNavLink != null) {
+    currentActiveNavLink.classList.remove("activeNavLink");
+  }
+  e.target.classList.toggle("activeNavLink");
+}
 const NavbarSection = ({ text, iconFontAwesome, link }) => {
   return (
-    <div className="nav-section">
+    <div
+      className="nav-section"
+      onClick={e => {
+        highlightNavLink(e);
+      }}
+    >
       <Link to={link}>
-        <i className={`${iconFontAwesome} navItemIcon`} />
-        <div className="text">{text}</div>
+        <div>
+          <i className={`${iconFontAwesome} navItemIcon`} />
+          <div className="text">{text}</div>
+        </div>
       </Link>
     </div>
   );
@@ -30,7 +44,7 @@ const Navbar = ({ user }) => {
       <div className="home">
         <NavbarSection
           text={"LSPD HELPER"}
-          iconFontAwesome={"fas fa-building"}
+          iconFontAwesome={"fas fa-clipboard"}
           link={"/"}
         />
       </div>

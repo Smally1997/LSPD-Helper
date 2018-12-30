@@ -217,7 +217,7 @@ class ArrestWarrantForm extends Component {
           this.context = user;
           return (
             <form>
-              <h4>Warrant Type</h4>
+              <h4>Arrest Warrant Type</h4>
               <div className="form-row">
                 <div className="form-group col-xs-12">
                   <label htmlFor="warrantType">L-RAW/H-RAW</label>
@@ -421,6 +421,17 @@ class ArrestWarrantForm extends Component {
                   )}
                   {user.signatureType == "image" && (
                     <img className="input-group" src={user.signature} />
+                  )}
+                  {user.signatureType == null && (
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="signature"
+                      value={
+                        "Select signature type and provide signature in the USER section."
+                      }
+                      readOnly={true}
+                    />
                   )}
                 </div>
               </div>

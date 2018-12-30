@@ -166,72 +166,77 @@ class FieldInterviewCard extends Component {
           </div>
         </div>
         <h4>Subject Vehicle</h4>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="veh">Vehicle</label>
-          <input
-            type="text"
-            className="form-control"
-            id="veh"
-            placeholder="Premier"
-            value={this.state.veh}
-            onChange={e => this.handleFormInput(e)}
-          />
-        </div>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="vehColor">Vehicle Color</label>
-          <input
-            type="text"
-            className="form-control"
-            id="vehColor"
-            placeholder="Blue"
-            value={this.state.vehColor}
-            onChange={e => this.handleFormInput(e)}
-          />
-        </div>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="vehLicenseNo">Vehicle License Plate</label>
-          <input
-            type="text"
-            className="form-control"
-            id="vehLicenseNo"
-            placeholder="1ABC234"
-            value={this.state.vehLicenseNo}
-            onChange={e => this.handleFormInput(e)}
-          />
+
+        <div className="form-row">
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="veh">Vehicle</label>
+            <input
+              type="text"
+              className="form-control"
+              id="veh"
+              placeholder="Premier"
+              value={this.state.veh}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="vehColor">Vehicle Color</label>
+            <input
+              type="text"
+              className="form-control"
+              id="vehColor"
+              placeholder="Blue"
+              value={this.state.vehColor}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="vehLicenseNo">Vehicle License Plate</label>
+            <input
+              type="text"
+              className="form-control"
+              id="vehLicenseNo"
+              placeholder="1ABC234"
+              value={this.state.vehLicenseNo}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
         </div>
         <h4>Gang Information</h4>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="gang">Gang</label>
-          <input
-            type="text"
-            className="form-control"
-            id="gang"
-            placeholder="Crips"
-            value={this.state.gang}
-            onChange={e => this.handleFormInput(e)}
-          />
-        </div>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="subset">Subset</label>
-          <input
-            type="text"
-            className="form-control"
-            id="subset"
-            placeholder="Gang Subset"
-            value={this.state.subset}
-            onChange={e => this.handleFormInput(e)}
-          />
-        </div>
-        <div className="form-group col-xs-12 col-sm-4">
-          <label htmlFor="alias">Type</label>
-          <input
-            type="text"
-            className="form-control"
-            id="type"
-            placeholder="Gang Type"
-            value={this.state.type}
-            onChange={e => this.handleFormInput(e)}
-          />
+        <div className="form-row">
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="gang">Gang</label>
+            <input
+              type="text"
+              className="form-control"
+              id="gang"
+              placeholder="Crips"
+              value={this.state.gang}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="subset">Subset</label>
+            <input
+              type="text"
+              className="form-control"
+              id="subset"
+              placeholder="Gang Subset"
+              value={this.state.subset}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
+          <div className="form-group col-xs-12 col-sm-4">
+            <label htmlFor="alias">Type</label>
+            <input
+              type="text"
+              className="form-control"
+              id="type"
+              placeholder="Gang Type"
+              value={this.state.type}
+              onChange={e => this.handleFormInput(e)}
+            />
+          </div>
         </div>
         <BBCode
           state={this.state}

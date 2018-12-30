@@ -12,15 +12,19 @@ const FormBox = ({ form }) => {
   return <div className="form-box" />;
 };
 
-const FormLink = ({ text, id, changeActiveForm }) => {
+const FormLink = ({ text, id, changeActiveForm, disabled }) => {
   return (
     <button
       type="button"
-      className="btn btn-default"
-      onClick={e => {
-        changeActiveForm(e, id);
-        highlightFormLink(e);
-      }}
+      className={disabled ? "btn btn-default disabled" : "btn btn-default"}
+      onClick={
+        disabled
+          ? null
+          : e => {
+              changeActiveForm(e, id);
+              highlightFormLink(e);
+            }
+      }
     >
       {text}
     </button>
@@ -37,6 +41,7 @@ const FormSelector = ({ pageForms, changeActiveForm }) => {
             id={form.id}
             changeActiveForm={changeActiveForm}
             key={form.id}
+            disabled={form.disabled}
           />
         );
       })}

@@ -8,22 +8,26 @@ const formItems = [
   {
     text: "INVESTIGATIVE REPORT",
     id: "investigativeReport",
-    form: InvestigativeReportForm
+    form: InvestigativeReportForm,
+    disabled: true
   },
   {
     text: "INTELLIGENCE REPORT",
     id: "intelligenceReport",
-    form: IntelligenceReportForm
+    form: IntelligenceReportForm,
+    disabled: true
   },
   {
     text: "FIELD INTERVIEW CARD",
     id: "fieldInterviewCard",
-    form: FieldInterviewCardForm
+    form: FieldInterviewCardForm,
+    disabled: false
   },
   {
     text: "FIELD INTERVIEW RESPONSE",
     id: "fieldInterviewResponse",
-    form: FieldInterviewResponseCardForm
+    form: FieldInterviewResponseCardForm,
+    disabled: false
   }
 ];
 class Reports extends Component {

@@ -1,7 +1,6 @@
 import React from "react";
-
 const InvestigativeReportForm = () => {
-  return <div id="form">Investigative Report Form</div>;
+  return <form />;
 };
 
 export default InvestigativeReportForm;

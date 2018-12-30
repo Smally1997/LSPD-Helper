@@ -19,6 +19,7 @@
 
 .nav-section .text {
   line-height: normal;
+  pointer-events: none;
 }
 
 /* Nav Items Group*/
@@ -46,6 +47,10 @@
   text-decoration: none;
 }
 
+.nav-section a:focus {
+  text-decoration: none;
+}
+
 /* Misc */
 #navbar .home {
   flex: 1;
@@ -63,4 +68,12 @@
   margin-bottom: 0.5rem;
   color: #d5d5d5;
   font-size: 2rem;
+  pointer-events: none;
+}
+
+.activeNavLink .navItemIcon {
+  color: white;
+}
+.activeNavLink .text {
+  color: white;
 }
