@@ -4,6 +4,10 @@ import {
   generateFieldInterviewCard,
   generateFieldInterviewCardTitle
 } from "../../../forms/frm_fieldInterviewCard.js";
+const {
+  updateLocalStorage,
+  retrieveLocalStorage
+} = require("../../../scripts/localStorageForms.js");
 
 class FieldInterviewCard extends Component {
   constructor(props) {
@@ -33,6 +37,19 @@ class FieldInterviewCard extends Component {
   handleFormInput(e) {
     const { id, value } = e.target;
     this.setState({ [id]: value });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    updateLocalStorage("field_interview_card_form", nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    let curState = this.state;
+    if (retrieveLocalStorage("field_interview_card_form") != null) {
+      curState = retrieveLocalStorage("field_interview_card_form");
+      this.setState(curState);
+    }
   }
   render() {
     return (

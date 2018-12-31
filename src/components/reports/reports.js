@@ -4,28 +4,30 @@ import FieldInterviewCardForm from "./field_interview_cards/field_interview_card
 import FieldInterviewResponseCardForm from "./field_interview_cards/field_interview_card_response_form";
 import IntelligenceReportForm from "./intelligence_reports/intelligence_report_form";
 import InvestigativeReportForm from "./investigative_reports/investigative_report_form";
+import { clearLocalStorage } from "../../scripts/localStorageForms.js";
+
 const formItems = [
   {
     text: "INVESTIGATIVE REPORT",
-    id: "investigativeReport",
+    id: "investigative_report_form",
     form: InvestigativeReportForm,
     disabled: true
   },
   {
     text: "INTELLIGENCE REPORT",
-    id: "intelligenceReport",
+    id: "intelligence_report_form",
     form: IntelligenceReportForm,
     disabled: true
   },
   {
     text: "FIELD INTERVIEW CARD",
-    id: "fieldInterviewCard",
+    id: "field_interview_card_form",
     form: FieldInterviewCardForm,
     disabled: false
   },
   {
     text: "FIELD INTERVIEW RESPONSE",
-    id: "fieldInterviewResponse",
+    id: "field_interview_card_response_form",
     form: FieldInterviewResponseCardForm,
     disabled: false
   }
@@ -51,9 +53,26 @@ class Reports extends Component {
             this.changeActiveForm(e, newActiveFormID)
           }
         />
+
         {formItems.map(formItem => {
-          if (formItem.id == this.state.activeFormID) {
-            return <formItem.form key={formItem.id} />;
+          if (formItem.id === this.state.activeFormID) {
+            return (
+              <div id="form-container">
+                <button
+                  className="btn btn-default clearLocalStorage"
+                  onClick={() => {
+                    clearLocalStorage(this.state.activeFormID);
+                    window.location.reload();
+                  }}
+                >
+                  Clear Saved Fields
+                </button>
+                <formItem.form
+                  key={formItem.id}
+                  clearLocalStorage={clearLocalStorage}
+                />
+              </div>
+            );
           }
         })}
       </Fragment>

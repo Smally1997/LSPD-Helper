@@ -5,6 +5,10 @@ import {
   generateSearchWarrantTitle
 } from "../../../forms/frm_searchWarrant.js";
 import BBCode from "../../bbCode/bbCode.js";
+const {
+  updateLocalStorage,
+  retrieveLocalStorage
+} = require("../../../scripts/localStorageForms.js");
 
 const SearchProperties = ({
   properties,
@@ -247,7 +251,6 @@ class SearchWarrantForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      affDivision: null,
       searchProperties: [{ searchPropertyDescription: null }],
       concealedProperties: [{ concealedPropertyDescription: null }],
       charges: [{ chargeName: null, counts: null }],
@@ -352,6 +355,19 @@ class SearchWarrantForm extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    updateLocalStorage("search_warrant_form", nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    let curState = this.state;
+    if (retrieveLocalStorage("search_warrant_form") != null) {
+      curState = retrieveLocalStorage("search_warrant_form");
+      this.setState(curState);
+    }
+  }
+
   render() {
     const {
       searchProperties,
@@ -407,15 +423,16 @@ class SearchWarrantForm extends Component {
                 </div>
 
                 <div className="form-group col-xs-12 col-sm-6">
-                  <label htmlFor="affRank">Dept. Division</label>
+                  <label htmlFor="affDivisionAbbreviation">
+                    Division Abbreviation
+                  </label>
                   <input
                     type="text"
                     className="form-control"
-                    id="affDivision"
+                    id="affDivisionAbbreviation"
+                    value={user.divisionAbbreviation}
                     placeholder="RHD/GND/DSVD"
-                    onChange={e => {
-                      this.handleFormInput(e);
-                    }}
+                    readOnly={true}
                   />
                 </div>
               </div>

@@ -11,6 +11,8 @@ export class UserContextProvider extends Component {
       lastName: null,
       rank: null,
       serial: null,
+      division: null,
+      divisionAbbreviation: null,
       signature: null,
       signatureType: null,
       updateUser: this.updateUser

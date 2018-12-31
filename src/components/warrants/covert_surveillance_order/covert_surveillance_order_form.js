@@ -6,6 +6,11 @@ import {
 } from "../../../forms/frm_covertSurveillanceOrder.js";
 import BBCode from "../../bbCode/bbCode.js";
 
+const {
+  updateLocalStorage,
+  retrieveLocalStorage
+} = require("../../../scripts/localStorageForms.js");
+
 const SurveillanceProperties = ({
   properties,
   handleFormInput,
@@ -351,6 +356,18 @@ class CovertSurveillanceOrderForm extends Component {
       let { facts } = this.state;
       facts.splice(index, 1);
       this.setState([facts]);
+    }
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    updateLocalStorage("covert_surveillance_order_form", nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    let curState = this.state;
+    if (retrieveLocalStorage("covert_surveillance_order_form") != null) {
+      curState = retrieveLocalStorage("covert_surveillance_order_form");
+      this.setState(curState);
     }
   }
 

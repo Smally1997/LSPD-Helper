@@ -74,6 +74,34 @@ class User extends Component {
                       onChange={e => this.updateUserContext(e)}
                     />
                   </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-xs-12 col-sm-6">
+                    <label for="division">Division</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="division"
+                      placeholder="Robbery-Homicide"
+                      value={user.division}
+                      onChange={e => this.updateUserContext(e)}
+                    />
+                  </div>
+                  <div className="form-group col-xs-12 col-sm-6">
+                    <label for="divisionAbbreviation">
+                      Division Abbreviation
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="divisionAbbreviation"
+                      placeholder="RHD"
+                      value={user.divisionAbbreviation}
+                      onChange={e => this.updateUserContext(e)}
+                    />
+                  </div>
+                </div>
+                <div className="form-row">
                   <div className="form-group col-xs-12">
                     <label for="signatureType">Signature Type</label>
                     <div className="btn-group input-group">

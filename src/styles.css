@@ -16,9 +16,9 @@ main {
 
 /* Forms */
 form {
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  min-width: 85%;
 }
 form h4 {
   text-align: center;
@@ -26,6 +26,16 @@ form h4 {
   text-decoration: underline;
   margin-bottom: 0;
 }
+#form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#form-container .btn.btn-default.clearLocalStorage {
+  margin: 1rem 0;
+}
+
 .sub-header {
   text-align: center;
 }

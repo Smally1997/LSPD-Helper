@@ -6,6 +6,10 @@ import {
   generateArrestWarrantTitle
 } from "../../../forms/frm_arrestWarrant.js";
 import BBCode from "../../bbCode/bbCode.js";
+const {
+  updateLocalStorage,
+  retrieveLocalStorage
+} = require("../../../scripts/localStorageForms.js");
 
 const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
   return (
@@ -208,6 +212,18 @@ class ArrestWarrantForm extends Component {
       this.setState({ evidence });
     }
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    updateLocalStorage("arrest_warrant_form", nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    let curState = this.state;
+    if (retrieveLocalStorage("arrest_warrant_form") != null) {
+      curState = retrieveLocalStorage("arrest_warrant_form");
+      this.setState(curState);
+    }
+  }
 
   render() {
     const { charges, evidence } = this.state;
@@ -294,7 +310,9 @@ class ArrestWarrantForm extends Component {
                     className="form-control"
                     id="susFirstName"
                     placeholder="Jane"
-                    value={this.state.susFirstName}
+                    value={
+                      this.state.susFirstName || this.props.defaultInputValue
+                    }
                     onChange={e => this.handleFormInput(e)}
                   />
                 </div>

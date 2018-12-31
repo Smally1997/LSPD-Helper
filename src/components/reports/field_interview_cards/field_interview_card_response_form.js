@@ -4,6 +4,10 @@ import {
   generateFieldInterviewResponseCardTitle
 } from "../../../forms/frm_fieldInterviewResponseCard.js";
 import BBCode from "../../bbCode/bbCode.js";
+const {
+  updateLocalStorage,
+  retrieveLocalStorage
+} = require("../../../scripts/localStorageForms.js");
 
 class FieldInterviewCardResponseForm extends Component {
   constructor(props) {
@@ -21,6 +25,19 @@ class FieldInterviewCardResponseForm extends Component {
     const { id, value } = e.target;
     this.setState({ [id]: value });
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    updateLocalStorage("field_interview_card_response_form", nextState);
+    return true;
+  }
+
+  componentDidMount() {
+    let curState = this.state;
+    if (retrieveLocalStorage("field_interview_card_response_form") != null) {
+      curState = retrieveLocalStorage("field_interview_card_response_form");
+      this.setState(curState);
+    }
+  }
+
   render() {
     return (
       <form>
