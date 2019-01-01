@@ -40,6 +40,11 @@ const Navbar = ({ user }) => {
           iconFontAwesome={"fas fa-gavel"}
           link={"/warrants"}
         />
+        <NavbarSection
+          text={"FTP"}
+          iconFontAwesome={"fas fa-school"}
+          link={"/ftp"}
+        />
       </div>
       <div className="home">
         <NavbarSection

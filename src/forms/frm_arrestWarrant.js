@@ -42,9 +42,9 @@ export const generateArrestWarrant = (params, userContext) => {
 
 [hr][/hr]
 [u][b]Narrative[/b][/u]
-[list=none][b]Date and Time:[/b] ${moment(params.date).format(
-    "DD/MMM/YYYY"
-  )} - ${params.time}
+[list=none][b]Date and Time:[/b] ${moment(params.date)
+    .format("DD/MMM/YYYY")
+    .toUpperCase()} - ${params.time}
 [b]Location:[/b] ${params.location}
 [b]Details:[/b] [list=none][b]I, ${userContext.firstName} ${
     userContext.lastName

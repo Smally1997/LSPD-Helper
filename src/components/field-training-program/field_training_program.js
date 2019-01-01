@@ -1,38 +1,17 @@
 import React, { Component, Fragment } from "react";
 import CategoryPage from "../category-page/category-page";
-import FieldInterviewCardForm from "./field_interview_cards/field_interview_card_form";
-import FieldInterviewResponseCardForm from "./field_interview_cards/field_interview_card_response_form";
-import IntelligenceReportForm from "./intelligence_reports/intelligence_report_form";
-import InvestigativeReportForm from "./investigative_reports/investigative_report_form";
+import PatrolObservationReportFrom from "./patrol_observation_reports/patrol_observation_report_form";
 import { clearLocalStorage } from "../../scripts/localStorageForms.js";
 
 const formItems = [
   {
-    text: "INVESTIGATIVE REPORT",
-    id: "investigative_report_form",
-    form: InvestigativeReportForm,
-    disabled: true
-  },
-  {
-    text: "INTELLIGENCE REPORT",
-    id: "intelligence_report_form",
-    form: IntelligenceReportForm,
-    disabled: true
-  },
-  {
-    text: "FIELD INTERVIEW CARD",
-    id: "field_interview_card_form",
-    form: FieldInterviewCardForm,
-    disabled: false
-  },
-  {
-    text: "FIELD INTERVIEW RESPONSE",
-    id: "field_interview_card_response_form",
-    form: FieldInterviewResponseCardForm,
+    text: "PATROL OBSERVATION REPORT",
+    id: "patrol_observation_report_form",
+    form: PatrolObservationReportFrom,
     disabled: false
   }
 ];
-class Reports extends Component {
+class FieldTrainingProgram extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,7 +26,7 @@ class Reports extends Component {
     return (
       <Fragment>
         <CategoryPage
-          pageTitle={"REPORTS"}
+          pageTitle={"FIELD TRAINING PROGRAM"}
           pageForms={formItems}
           changeActiveForm={(e, newActiveFormID) =>
             this.changeActiveForm(e, newActiveFormID)
@@ -80,4 +59,4 @@ class Reports extends Component {
   }
 }
 
-export default Reports;
+export default FieldTrainingProgram;

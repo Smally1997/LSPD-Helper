@@ -1,0 +1,27 @@
+.ftp-category {
+  margin-bottom: 0;
+}
+
+.ftp-category label {
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.ftp-category-rating-trn {
+  margin: 0;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0;
+}
+
+label.form-check-label {
+  margin-left: 0.8rem;
+  margin-bottom: 0;
+}

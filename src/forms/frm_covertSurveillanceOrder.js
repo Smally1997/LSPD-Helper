@@ -66,9 +66,9 @@ ${factString(params.facts)}
 
 [hr][/hr]
 
-[list]Sworn on ${moment(params.date).format(
-    "DD/MMM/YY"
-  )} by the undersigned at Los Santos Police Department, Pershing Square, San Andreas.[/list]
+[list]Sworn on ${moment(params.date)
+    .format("DD/MMM/YY")
+    .toUpperCase()} by the undersigned at Los Santos Police Department, Pershing Square, San Andreas.[/list]
 
 [aligntable=left,0,78,0,0,0,#FFFFFF][center][b][u]Name of Affiant[/u][/b]
 ${userContext.firstName} ${
@@ -83,9 +83,9 @@ ${userContext.signature}[/center][/aligntable]
 };
 
 export const generateCovertSurveillanceOrderTitle = (params, userContext) => {
-  return `[${params.affDivision}] [${moment(params.date).format(
-    "DD/MMM/YYYY"
-  )}] [${[
+  return `[${params.affDivision}] [${moment(params.date)
+    .format("DD/MMM/YYYY")
+    .toUpperCase()}] [${[
     userContext.firstName.substring(0, 1)
   ]}${userContext.lastName.substring(0, 1)}] CSO`;
 };

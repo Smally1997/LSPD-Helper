@@ -47,7 +47,7 @@ class Warrants extends Component {
         {formItems.map(formItem => {
           if (formItem.id == this.state.activeFormID) {
             return (
-              <div id="form-container">
+              <div id="form-container" key={this.state.activeFormID}>
                 <button
                   className="btn btn-default clearLocalStorage"
                   onClick={() => {
