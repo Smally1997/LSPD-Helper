@@ -1,10 +1,7 @@
 import React from "react";
 import { PenalCode } from "./penal_code.js";
 import Autocomplete from "react-autocomplete";
-const renderMenu = (items, value, style) => {
-  style.maxWidth = style.minWidth;
-  <div style={style}>{items}</div>;
-};
+
 export const SearchPenalCode = ({ id, value, handleFormInput }) => {
   return (
     <Autocomplete
