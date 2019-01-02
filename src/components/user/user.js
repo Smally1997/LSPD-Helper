@@ -107,7 +107,7 @@ class User extends Component {
                     <div className="btn-group input-group">
                       <button
                         type="button"
-                        class={
+                        className={
                           user.signatureType == "text"
                             ? "btn btn-primary"
                             : "btn btn-default"
@@ -120,7 +120,7 @@ class User extends Component {
                       </button>
                       <button
                         type="button"
-                        class={
+                        className={
                           user.signatureType == "image"
                             ? "btn btn-primary"
                             : "btn btn-default"

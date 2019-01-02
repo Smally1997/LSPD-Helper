@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { UserContextConsumer } from "../../UserContext.js";
+import { ForumPostLinkButtons } from "./forum_post_link_buttons";
+import { copySuccessToast } from "../pop-ups/pop_ups";
 import "./bbCode.css";
 class BBCode extends Component {
   constructor(props) {
@@ -21,9 +23,22 @@ class BBCode extends Component {
     const copyEl = document.getElementById(copyTarget);
     copyEl.select();
     document.execCommand("copy");
+    copySuccessToast();
+  }
+  componentDidUpdate() {
+    let allTextAreas = document.querySelectorAll("textarea");
+    allTextAreas.forEach(textArea => {
+      textArea.style.height = "5px";
+      textArea.style.height = textArea.scrollHeight + "px";
+    });
   }
   render() {
-    const { generateTitleFunction, generateBodyFunction, state } = this.props;
+    const {
+      generateTitleFunction,
+      generateBodyFunction,
+      state,
+      forumPostLinks
+    } = this.props;
     return (
       <UserContextConsumer>
         {({ user }) => {
@@ -40,6 +55,7 @@ class BBCode extends Component {
               >
                 Generate BB Code
               </button>
+
               <div className="form-row">
                 <div className="input-group">
                   <input
@@ -73,6 +89,9 @@ class BBCode extends Component {
                   </div>
                 </div>
               </div>
+              {forumPostLinks != null && (
+                <ForumPostLinkButtons forumPostLinks={forumPostLinks} />
+              )}
             </div>
           );
         }}

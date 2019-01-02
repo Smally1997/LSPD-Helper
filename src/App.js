@@ -3,6 +3,7 @@ import Navbar from "./components/navbar/navbar";
 import { Footer } from "./components/footer/footer";
 import Main from "./Main.js";
 import { UserContextProvider } from "./UserContext";
+import { ToastContainer, Slide } from "react-toastify";
 import $ from "jquery";
 class App extends Component {
   constructor(props) {
@@ -20,10 +21,16 @@ class App extends Component {
       this.setState({ mainMinHeight });
     }
   }
+
   render() {
     return (
       <div>
         <UserContextProvider>
+          <ToastContainer
+            hideProgressBar={true}
+            autoClose={2500}
+            transition={Slide}
+          />
           <Navbar />
           <Main styles={{ minHeight: this.state.mainMinHeight }} />
           <Footer />

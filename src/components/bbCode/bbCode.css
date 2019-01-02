@@ -6,3 +6,9 @@
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.9);
 }
+.forum-post-link-buttons {
+  display: flex;
+}
+.forum-post-link-button-wrapper {
+  flex: 1;
+}

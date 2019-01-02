@@ -4,6 +4,7 @@ import ArrestWarrantForm from "./arrest_warrants/arrest_warrant_form";
 import SearchWarrantForm from "./search_warrants/search_warrant_form";
 import CovertSurveillanceOrderForm from "./covert_surveillance_order/covert_surveillance_order_form";
 import { clearLocalStorage } from "../../scripts/localStorageForms.js";
+import "./warrants.css";
 const formItems = [
   {
     text: "SEARCH WARRANT",

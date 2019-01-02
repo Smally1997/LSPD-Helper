@@ -2,7 +2,6 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 function highlightNavLink(e) {
-  console.log(e.parents);
   let currentActiveNavLink = document.querySelector(".activeNavLink");
   if (currentActiveNavLink != null) {
     currentActiveNavLink.classList.remove("activeNavLink");

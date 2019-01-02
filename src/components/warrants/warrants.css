@@ -1,0 +1,10 @@
+.charges-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.autocomplete-item {
+  overflow-wrap: normal;
+  word-wrap: normal;
+  padding: 6px 12px;
+}

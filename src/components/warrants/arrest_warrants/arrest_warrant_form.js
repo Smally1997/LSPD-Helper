@@ -5,12 +5,24 @@ import {
   generateArrestWarrant,
   generateArrestWarrantTitle
 } from "../../../forms/frm_arrestWarrant.js";
+import { SearchPenalCode } from "../../../scripts/searchPenalCode.js";
+
 import BBCode from "../../bbCode/bbCode.js";
 const {
   updateLocalStorage,
   retrieveLocalStorage
 } = require("../../../scripts/localStorageForms.js");
 
+const ForumPostLinks = [
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=2392",
+    linkText: "Arrest Warrant"
+  },
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=2393",
+    linkText: "DB Arrest Warrant"
+  }
+];
 const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
   return (
     <div>
@@ -20,12 +32,10 @@ const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
           <div className="form-row" key={`charge_${index}`}>
             <div className="form-group col-xs-6">
               <label htmlFor={`chargeName_${index}`}>Charge #{index + 1}</label>
-              <input
-                type="text"
-                className="form-control"
+              <SearchPenalCode
                 id={`chargeName_${index}`}
-                value={charges[index].chargeName}
-                onChange={e => handleFormInput(e)}
+                value={charges[index].chargeName || " "}
+                handleFormInput={handleFormInput}
               />
             </div>
             <div className="form-group col-xs-3">
@@ -457,6 +467,7 @@ class ArrestWarrantForm extends Component {
                 state={this.state}
                 generateTitleFunction={generateArrestWarrantTitle}
                 generateBodyFunction={generateArrestWarrant}
+                forumPostLinks={ForumPostLinks}
               />
             </form>
           );

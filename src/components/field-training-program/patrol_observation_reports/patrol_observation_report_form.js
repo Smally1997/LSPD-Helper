@@ -153,6 +153,20 @@ class PatrolObservationReportFrom extends Component {
     }
   }
   render() {
+    const ForumPostLinks = [
+      {
+        link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=2665",
+        linkText: "Create New PO I Topic"
+      },
+      {
+        link: `https://pd.lsgov.io/forum/search.php?keywords=${
+          this.state.probFirstName
+        }+${
+          this.state.probLastName
+        }&terms=all&author=&fid%5B%5D=2665&sc=1&sf=titleonly&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`,
+        linkText: "Search for PO I Topic"
+      }
+    ];
     const PerformanceCategories = [
       {
         categoryLabel: "1. Acceptance of Criticism / Feedback",
@@ -379,6 +393,7 @@ class PatrolObservationReportFrom extends Component {
                 state={this.state}
                 generateTitleFunction={generatePatrolObservationReportTitle}
                 generateBodyFunction={generatePatrolObservationReport}
+                forumPostLinks={ForumPostLinks}
               />
             </form>
           );

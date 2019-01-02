@@ -9,6 +9,12 @@ const {
   retrieveLocalStorage
 } = require("../../../scripts/localStorageForms.js");
 
+const ForumPostLinks = [
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=2827#preview",
+    linkText: "Field Interview Card"
+  }
+];
 class FieldInterviewCard extends Component {
   constructor(props) {
     super(props);
@@ -259,6 +265,7 @@ class FieldInterviewCard extends Component {
           state={this.state}
           generateTitleFunction={generateFieldInterviewCardTitle}
           generateBodyFunction={generateFieldInterviewCard}
+          forumPostLinks={ForumPostLinks}
         />
       </form>
     );

@@ -5,10 +5,26 @@ import {
   generateSearchWarrantTitle
 } from "../../../forms/frm_searchWarrant.js";
 import BBCode from "../../bbCode/bbCode.js";
+import { SearchPenalCode } from "../../../scripts/searchPenalCode.js";
 const {
   updateLocalStorage,
   retrieveLocalStorage
 } = require("../../../scripts/localStorageForms.js");
+
+const ForumPostLinks = [
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=1232",
+    linkText: "RHD Search Warrant"
+  },
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=1233",
+    linkText: "GND Search Warrant"
+  },
+  {
+    link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=1234",
+    linkText: "DSVD Search Warrant"
+  }
+];
 
 const SearchProperties = ({
   properties,
@@ -132,24 +148,21 @@ const ConcealedProperties = ({
 
 const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
   return (
-    <div>
+    <div className="charges-wrapper">
       {charges.map(charge => {
         const index = charges.indexOf(charge);
         return (
           <div className="form-row" key={`charge_${index}`}>
-            <div className="form-group col-xs-6">
+            <div className="form-group col-xs-9 col-sm-6 react-autocomplete-group">
               <label htmlFor={`chargeName_${index}`}>Charge #{index + 1}</label>
-              <input
-                type="text"
-                className="form-control"
+              <SearchPenalCode
                 id={`chargeName_${index}`}
-                value={charges[index].chargeName}
-                onChange={e => handleFormInput(e)}
+                value={charges[index].chargeName || " "}
+                handleFormInput={handleFormInput}
               />
             </div>
-            <div className="form-group col-xs-3">
+            <div className="form-group col-xs-9 col-sm-3">
               <label htmlFor={`counts_${index}`}>Counts</label>
-
               <input
                 type="number"
                 min="1"
@@ -159,7 +172,7 @@ const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
                 onChange={e => handleFormInput(e)}
               />
             </div>
-            <div className="form-group col-xs-3">
+            <div className="form-group col-xs-3 col-sm-3">
               <label style={{ visibility: "hidden" }}>Delete/Add</label>
 
               <div className="input-group plus_minus_wrapper">
@@ -261,8 +274,9 @@ class SearchWarrantForm extends Component {
     this.addInputBox = this.addInputBox.bind(this);
     this.removeInputBox = this.removeInputBox.bind(this);
   }
-
   handleFormInput(e) {
+    // handle  react-autocomplete options click
+
     const { id, value } = e.target;
     const field = id.substring(0, id.indexOf("_"));
     const index = id.substring(id.indexOf("_") + 1);
@@ -522,6 +536,7 @@ class SearchWarrantForm extends Component {
                 state={this.state}
                 generateTitleFunction={generateSearchWarrantTitle}
                 generateBodyFunction={generateSearchWarrant}
+                forumPostLinks={ForumPostLinks}
               />
             </form>
           );

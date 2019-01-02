@@ -17,7 +17,10 @@
   color: white;
   font-style: italic;
 }
-
+.footer-item {
+  flex: 1;
+}
 .footer-item.left {
   justify-self: flex-start;
+  flex: 1;
 }
