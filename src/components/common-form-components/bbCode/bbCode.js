@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { UserContextConsumer } from "../../UserContext.js";
+import { UserContextConsumer } from "../../../UserContext.js";
 import { ForumPostLinkButtons } from "./forum_post_link_buttons";
-import { copySuccessToast } from "../pop-ups/pop_ups";
+import { copySuccessToast } from "../../pop-ups/pop_ups";
 import "./bbCode.css";
-class BBCode extends Component {
+export class BBCode extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,5 +99,3 @@ class BBCode extends Component {
     );
   }
 }
-
-export default BBCode;

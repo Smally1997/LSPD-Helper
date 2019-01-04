@@ -4,9 +4,16 @@ import FieldInterviewCardForm from "./field_interview_cards/field_interview_card
 import FieldInterviewResponseCardForm from "./field_interview_cards/field_interview_card_response_form";
 import IntelligenceReportForm from "./intelligence_reports/intelligence_report_form";
 import InvestigativeReportForm from "./investigative_reports/investigative_report_form";
+import DailyFieldActivitesReportForm from "./daily_field_activities/daily_field_activities_report_form";
 import { clearLocalStorage } from "../../scripts/localStorageForms.js";
 
 const formItems = [
+  {
+    text: "DAILY FIELD ACTIVITIES",
+    id: "daily_field_activities_report_form",
+    form: DailyFieldActivitesReportForm,
+    disabled: false
+  },
   {
     text: "INVESTIGATIVE REPORT",
     id: "investigative_report_form",

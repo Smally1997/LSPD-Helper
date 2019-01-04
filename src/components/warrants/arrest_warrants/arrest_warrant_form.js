@@ -5,9 +5,11 @@ import {
   generateArrestWarrant,
   generateArrestWarrantTitle
 } from "../../../forms/frm_arrestWarrant.js";
-import { SearchPenalCode } from "../../../scripts/searchPenalCode.js";
-
-import BBCode from "../../bbCode/bbCode.js";
+import {
+  Evidence,
+  Charges,
+  BBCode
+} from "../../common-form-components/common_form_components";
 const {
   updateLocalStorage,
   retrieveLocalStorage
@@ -23,127 +25,7 @@ const ForumPostLinks = [
     linkText: "DB Arrest Warrant"
   }
 ];
-const Charges = ({ charges, addCharge, removeCharge, handleFormInput }) => {
-  return (
-    <div>
-      {charges.map(charge => {
-        const index = charges.indexOf(charge);
-        return (
-          <div className="form-row" key={`charge_${index}`}>
-            <div className="form-group col-xs-6">
-              <label htmlFor={`chargeName_${index}`}>Charge #{index + 1}</label>
-              <SearchPenalCode
-                id={`chargeName_${index}`}
-                value={charges[index].chargeName || " "}
-                handleFormInput={handleFormInput}
-              />
-            </div>
-            <div className="form-group col-xs-3">
-              <label htmlFor={`counts_${index}`}>Counts</label>
 
-              <input
-                type="number"
-                min="1"
-                className="form-control"
-                id={`counts_${index}`}
-                value={charges[index].counts}
-                onChange={e => handleFormInput(e)}
-              />
-            </div>
-            <div className="form-group col-xs-3">
-              <label style={{ visibility: "hidden" }}>Delete/Add</label>
-
-              <div className="input-group plus_minus_wrapper">
-                {index != 0 && (
-                  <button
-                    className="btn"
-                    type="button"
-                    onClick={e => {
-                      removeCharge(e, "charges", index);
-                    }}
-                  >
-                    <i className="fas fa-minus-square" />
-                  </button>
-                )}
-                {index == 0 && <button className="btn" />}
-
-                <button
-                  className="btn"
-                  type="button"
-                  onClick={e => {
-                    addCharge(e, "charges");
-                  }}
-                >
-                  <i className="fas fa-plus-square" />
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-const Evidence = ({
-  evidence,
-  handleFormInput,
-  addEvidence,
-  removeEvidence
-}) => {
-  return (
-    <div>
-      {evidence.map(evidenceItem => {
-        const index = evidence.indexOf(evidenceItem);
-        return (
-          <div className="form-row" key={`evidence_${index}`}>
-            <div className="form-group col-xs-9">
-              <label htmlFor={`evidenceDescription_${index}`}>
-                Exhibit #{index + 1}
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id={`evidenceDescription_${index}`}
-                value={evidence[index].description}
-                onChange={e => handleFormInput(e)}
-              />
-            </div>
-
-            <div className="form-group col-xs-3">
-              <label style={{ visibility: "hidden" }}>Delete/Add</label>
-
-              <div className="input-group plus_minus_wrapper">
-                {index != 0 && (
-                  <button
-                    className="btn"
-                    type="button"
-                    onClick={e => {
-                      removeEvidence(e, "evidence", index);
-                    }}
-                  >
-                    <i className="fas fa-minus-square" />
-                  </button>
-                )}
-                {index == 0 && <button className="btn" />}
-
-                <button
-                  className="btn"
-                  type="button"
-                  onClick={e => {
-                    addEvidence(e, "evidence");
-                  }}
-                >
-                  <i className="fas fa-plus-square" />
-                </button>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
 class ArrestWarrantForm extends Component {
   constructor(props) {
     super(props);

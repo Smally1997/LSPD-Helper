@@ -24,7 +24,7 @@ form h4 {
   text-align: center;
   font-weight: bold;
   text-decoration: underline;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 #form-container {
   display: flex;
@@ -70,6 +70,22 @@ textarea {
   resize: none;
   overflow: hidden;
   min-height: 50px;
+}
+
+label {
+  font-size: 1.4rem;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0;
+}
+
+label.form-check-label {
+  margin-left: 0.8rem;
+  margin-bottom: 0;
+  font-weight: normal;
+  font-size: 1.2rem;
 }
 
 /* Buttons */

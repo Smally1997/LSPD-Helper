@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BBCode from "../../bbCode/bbCode.js";
+import { BBCode } from "../../common-form-components/common_form_components.js";
 import {
   generateFieldInterviewCard,
   generateFieldInterviewCardTitle

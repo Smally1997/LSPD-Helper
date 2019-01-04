@@ -1,0 +1,19 @@
+.activity-letter {
+  text-decoration: underline;
+  font-size: 1.6rem;
+}
+
+.activity-wrapper {
+  border: 1px solid black;
+  margin: 2rem 0;
+}
+.activity-incident-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.activity-incident {
+  padding: 0;
+  margin: 0.5rem 0;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { UserContextConsumer } from "../../../UserContext.js";
-import BBCode from "../../bbCode/bbCode.js";
+import { BBCode } from "../../common-form-components/common_form_components.js";
 import {
   generatePatrolObservationReport,
   generatePatrolObservationReportTitle

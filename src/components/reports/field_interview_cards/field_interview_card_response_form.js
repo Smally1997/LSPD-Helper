@@ -3,7 +3,7 @@ import {
   generateFieldInterviewResponseCard,
   generateFieldInterviewResponseCardTitle
 } from "../../../forms/frm_fieldInterviewResponseCard.js";
-import BBCode from "../../bbCode/bbCode.js";
+import { BBCode } from "../../common-form-components/common_form_components.js";
 const {
   updateLocalStorage,
   retrieveLocalStorage
