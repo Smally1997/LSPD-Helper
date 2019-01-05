@@ -42,7 +42,8 @@ function getCheckboxValue(items, searchID) {
 const reportsString = reports => {
   let returnString = ``;
   reports.forEach(report => {
-    returnString += `[url=${report.link}]${report.type}[/url] `;
+    if (report.type != null)
+      returnString += `[url=${report.link}]${report.type}[/url] `;
   });
   return returnString;
 };
@@ -58,9 +59,9 @@ const generateActivity = (activity, index) => {
   const { incidents, dispositions, reports, howReceived, narrative } = activity;
 
   return `[size=150][b]${nextChar(index)}[/b][/size]
-[size=85][b]START TIME:[/b] ${activity.startTime}
-[b]END TIME:[/b] ${activity.endTime}
-[b]LOCATION:[/b] ${activity.location}
+[size=85][b]START TIME:[/b] ${activity.startTime || ""}
+[b]END TIME:[/b] ${activity.endTime || ""}
+[b]LOCATION:[/b] ${activity.location || ""}
 [b]INCIDENT[/b][/size]
 [table][tr][td][${getIncidentValue(incidents, "trespassing")}] Trespassing[/td]
 [td][${getIncidentValue(incidents, "disturbance")}] Disturbance [/td]
@@ -119,9 +120,8 @@ const generateActivity = (activity, index) => {
   }] ${getIncidentValue(incidents, "other") ||
     "Other (Specify)"}[/td][/tr][/table]
 
-[size=85][b]SUPERVISOR AT SCENE:[/b] ${activity.supervisorRank} ${
-    activity.supervisorName
-  }
+[size=85][b]SUPERVISOR AT SCENE:[/b] ${activity.supervisorRank ||
+    ""} ${activity.supervisorName || ""}
 [b]DISPOSITION[/b][/size]
 [table][tr][td][${getCheckboxValue(dispositions, "adv")}] ADV (Advised)[/td]
 [td][${getCheckboxValue(dispositions, "arr")}] ARR (Arrest)[/td]
@@ -150,7 +150,7 @@ const generateActivity = (activity, index) => {
 ${reportsString(reports)}
 
 [b]NARRATIVE:[/b][/size]
-[list=none]${narrative}[/list]
+[list=none]${narrative || ""}[/list]
 
 `;
 };
@@ -168,11 +168,11 @@ export const generateDailyFieldActivitiesReport = (params, userContext) => {
 [b]SERIAL NO.[/b] ${userContext.serial}
 [b]DATE:[/b] ${moment(params.date)
     .format("DD/MMM/YYYY")
-    .toUpperCase()}
-[b]ON DUTY:[/b] ${params.startTime}
-[b]OFF DUTY:[/b] ${params.endTime}
+    .toUpperCase() || ""}
+[b]ON DUTY:[/b] ${params.startTime || ""}
+[b]OFF DUTY:[/b] ${params.endTime || ""}
 [b]DIVISION:[/b] ${userContext.division}
-[b]CALL SIGN:[/b] ${params.callSign}[/size]
+[b]CALL SIGN:[/b] ${params.callSign || ""}[/size]
 
 [u][b][size=90]ACTIVITIES[/size][/b]____________________________________________________________________________[/u]
 ${generateActivities(params.activities)}
@@ -180,12 +180,12 @@ ${generateActivities(params.activities)}
 
 
 [u][b][size=90]LOGS[/size][/b]________________________________________________________________________________[/u]
-[size=85][b]TOTAL CALLS FOR SERVICE:[/b]
-[b]TRAFFIC STOPS MADE:[/b]
-[b]CITATIONS ISSUED:[/b]
-[b]WARNINGS ISSUED:[/b]
-[b]FELONY ARRESTS MADE:[/b] 
-[b]MISDEMEANOR ARRESTS MADE:[/b] 
+[size=85][b]TOTAL CALLS FOR SERVICE:[/b] ${params.callsForService || ""}
+[b]TRAFFIC STOPS MADE:[/b] ${params.trafficStops || ""}
+[b]CITATIONS ISSUED:[/b] ${params.citationsIssued || ""}
+[b]WARNINGS ISSUED:[/b] ${params.warningsIssued || ""}
+[b]FELONY ARRESTS MADE:[/b] ${params.felonyArrests || ""}
+[b]MISDEMEANOR ARRESTS MADE:[/b] ${params.misdemeanorArrests || ""}
 [/size]`;
 };
 

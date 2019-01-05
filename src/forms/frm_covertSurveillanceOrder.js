@@ -5,28 +5,32 @@ export const generateCovertSurveillanceOrder = (params, userContext) => {
   const surveillancePropertyString = surveillanceProperties => {
     let str = ``;
     surveillanceProperties.forEach(property => {
-      str += `[*]${property.propertyDescription}`;
+      if (property.propertyDescription != null)
+        str += `[*]${property.propertyDescription}`;
     });
     return str;
   };
   const peopleOrPersonString = peopleOrPersons => {
     let str = ``;
+
     peopleOrPersons.forEach(peopleOrPerson => {
-      str += `[*]${peopleOrPerson.peopleOrPerson}`;
+      if (peopleOrPerson.peopleOrPerson != null)
+        str += `[*]${peopleOrPerson.peopleOrPerson}`;
     });
     return str;
   };
   const chargeString = charges => {
     let str = ``;
     charges.forEach(charge => {
-      str += `[*][b]${charge.counts}x ${charge.chargeName}[/b]`;
+      if (charge.chargeName != null)
+        str += `[*][b]${charge.counts}x ${charge.chargeName}[/b]`;
     });
     return str;
   };
   const factString = facts => {
     let str = ``;
     facts.forEach(statement => {
-      str += `[*]${statement.fact}`;
+      if (statement.fact != null) str += `[*]${statement.fact}`;
     });
     return str;
   };
@@ -56,7 +60,7 @@ ${peopleOrPersonString(params.peopleOrPersons)}
 [/list]
 
 who are, engaging in discussions concerning a future, engaging in discussions concerning a past or conspiring to perform a, violation of San Andreas Penal Code title(s):
-${chargeString(params.charges)}.
+${chargeString(params.charges)}
 
 The statement of facts to support a finding of probable cause are as follows:
 
@@ -83,7 +87,7 @@ ${userContext.signature}[/center][/aligntable]
 };
 
 export const generateCovertSurveillanceOrderTitle = (params, userContext) => {
-  return `[${params.affDivision}] [${moment(params.date)
+  return `[${params.affDivision || ""}] [${moment(params.date)
     .format("DD/MMM/YYYY")
     .toUpperCase()}] [${[
     userContext.firstName.substring(0, 1)

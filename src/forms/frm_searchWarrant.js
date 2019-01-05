@@ -5,28 +5,31 @@ export const generateSearchWarrant = (params, userContext) => {
   const searchPropertyString = searchProperties => {
     let str = ``;
     searchProperties.forEach(property => {
-      str += `[*]${property.searchPropertyDescription}`;
+      if (property.searchPropertyDescription != null)
+        str += `[*]${property.searchPropertyDescription}`;
     });
     return str;
   };
   const concealedPropertyString = concealedProperties => {
     let str = ``;
     concealedProperties.forEach(property => {
-      str += `[*]${property.concealedPropertyDescription}`;
+      if (property.concealedPropertyDescription != null)
+        str += `[*]${property.concealedPropertyDescription}`;
     });
     return str;
   };
   const chargeString = charges => {
     let str = ``;
     charges.forEach(charge => {
-      str += `[*][b]${charge.counts}x ${charge.chargeName}[/b]`;
+      if (charge.chargeName != null)
+        str += `[*][b]${charge.counts}x ${charge.chargeName}[/b]`;
     });
     return str;
   };
   const factString = facts => {
     let str = ``;
     facts.forEach(statement => {
-      str += `[*]${statement.fact}`;
+      if (statement.fact != null) str += `[*]${statement.fact}`;
     });
     return str;
   };
@@ -83,7 +86,7 @@ ${userContext.signature}[/center][/aligntable]
 };
 
 export const generateSearchWarrantTitle = (params, userContext) => {
-  return `[${params.affDivision}] [${moment(params.date)
+  return `[${params.affDivision || ""}] [${moment(params.date)
     .format("DD/MMM/YYYY")
     .toUpperCase()}] [${[
     userContext.firstName.substring(0, 1)

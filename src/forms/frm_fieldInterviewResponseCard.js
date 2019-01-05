@@ -4,11 +4,11 @@ var moment = require("moment");
 export const generateFieldInterviewResponseCard = params => {
   let frmString = `[b]DATE[/b] ${moment(params.date)
     .format("DD/MMM/YYYY")
-    .toUpperCase()}
-[b]TIME[/b] ${params.time}
-[b]LOCATION[/b] ${params.location}
+    .toUpperCase() || ""}
+[b]TIME[/b] ${params.time || ""}
+[b]LOCATION[/b] ${params.location || ""}
 
-[b]NARRATIVE:[/b] ${params.narrative}`;
+[b]NARRATIVE:[/b] ${params.narrative || ""}`;
   return frmString;
 };
 

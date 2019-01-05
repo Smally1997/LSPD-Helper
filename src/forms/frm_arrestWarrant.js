@@ -4,16 +4,18 @@ export const generateArrestWarrant = (params, userContext) => {
   const chargeString = charges => {
     let str = ``;
     charges.forEach(charge => {
-      str += `[*]${charge.counts}x ${charge.chargeName}`;
+      if (charge.chargeName != null)
+        str += `[*]${charge.counts}x ${charge.chargeName}`;
     });
     return str;
   };
   const evidenceString = evidence => {
     let str = ``;
     evidence.forEach(exhibit => {
-      str += `[altspoiler=EXHIBIT #${evidence.indexOf(exhibit) + 1}]${
-        exhibit.description
-      }[/altspoiler]`;
+      if (exhibit.description != null)
+        str += `[altspoiler=EXHIBIT #${evidence.indexOf(exhibit) + 1}]${
+          exhibit.description
+        }[/altspoiler]`;
     });
     return str;
   };
@@ -34,9 +36,10 @@ export const generateArrestWarrant = (params, userContext) => {
 
 [hr][/hr]
 [u][b]Suspect Details[/b][/u]
-[list=none][b]Full Name:[/b] ${params.susFirstName} ${params.susLastName}
-[b]Gender:[/b] ${params.susGender}
-[b]Phone Number:[/b] ${params.susPhone}
+[list=none][b]Full Name:[/b] ${params.susFirstName ||
+    ""} ${params.susLastName || ""}
+[b]Gender:[/b] ${params.susGender || ""}
+[b]Phone Number:[/b] ${params.susPhone || ""}
 [/list]
 
 
@@ -44,18 +47,18 @@ export const generateArrestWarrant = (params, userContext) => {
 [u][b]Narrative[/b][/u]
 [list=none][b]Date and Time:[/b] ${moment(params.date)
     .format("DD/MMM/YYYY")
-    .toUpperCase()} - ${params.time}
-[b]Location:[/b] ${params.location}
+    .toUpperCase() || ""} - ${params.time || ""}
+[b]Location:[/b] ${params.location || ""}
 [b]Details:[/b] [list=none][b]I, ${userContext.firstName} ${
     userContext.lastName
   }, being ﬁrst duly sworn, depose and state as follows:[/b]
-${params.details}[/list]
+${params.details || ""}[/list]
 
 [b]Charges:[/b][list]
-${chargeString(params.charges)}
+${chargeString(params.charges || "")}
 [/list]
 [b]Evidence:[/b][list]
-${evidenceString(params.evidence)}
+${evidenceString(params.evidence || "")}
 [/list]
 
 [b]Signature:[/b] ${userContext.signature}
@@ -64,7 +67,6 @@ ${evidenceString(params.evidence)}
 };
 
 export const generateArrestWarrantTitle = (params, userContext) => {
-  return `[${params.warrantType}] ${params.susFirstName} ${
-    params.susLastName
-  } [AFFIDAVIT]`;
+  return `[${params.warrantType || ""}] ${params.susFirstName ||
+    ""} ${params.susLastName || ""} [AFFIDAVIT]`;
 };
