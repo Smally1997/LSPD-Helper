@@ -18,7 +18,7 @@ const formItems = [
     text: "INVESTIGATIVE REPORT",
     id: "investigative_report_form",
     form: InvestigativeReportForm,
-    disabled: true
+    disabled: false
   },
   {
     text: "INTELLIGENCE REPORT",

@@ -15,17 +15,9 @@ export const Evidence = ({
               <label htmlFor={`evidenceDescription_${index}`}>
                 Exhibit #{index + 1}
               </label>
-              <input
-                type="text"
-                className="form-control"
-                id={`evidenceDescription_${index}`}
-                value={evidence[index].description}
-                onChange={e => handleFormInput(e)}
-              />
             </div>
-
             <div className="form-group col-xs-3">
-              <label style={{ visibility: "hidden" }}>Delete/Add</label>
+              <label style={{ visibility: "hidden" }} />
 
               <div className="input-group plus_minus_wrapper">
                 {index != 0 && (
@@ -51,6 +43,14 @@ export const Evidence = ({
                   <i className="fas fa-plus-square" />
                 </button>
               </div>
+            </div>
+            <div className="form-group col-xs-12">
+              <textarea
+                className="form-control"
+                id={`evidenceDescription_${index}`}
+                value={evidence[index].description}
+                onChange={e => handleFormInput(e)}
+              />
             </div>
           </div>
         );

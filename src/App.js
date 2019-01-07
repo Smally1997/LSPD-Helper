@@ -13,6 +13,14 @@ class App extends Component {
     };
   }
   componentDidMount() {
+    window.addEventListener("keypress", function(e) {
+      if (e.target.NODENAME == "INPUT") {
+        var key = e.charCode || e.keyCode || 0;
+        if (key == 13) {
+          e.preventDefault();
+        }
+      }
+    });
     const navHeight = $("#navbar").innerHeight();
     const footerHeight = $("#footer").innerHeight();
 
