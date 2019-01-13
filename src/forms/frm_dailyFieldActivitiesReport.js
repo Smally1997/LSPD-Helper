@@ -171,7 +171,7 @@ export const generateDailyFieldActivitiesReport = (params, userContext) => {
     .toUpperCase() || ""}
 [b]ON DUTY:[/b] ${params.startTime || ""}
 [b]OFF DUTY:[/b] ${params.endTime || ""}
-[b]DIVISION:[/b] ${userContext.division}
+[b]DIVISION:[/b] ${userContext.division || ""}
 [b]CALL SIGN:[/b] ${params.callSign || ""}[/size]
 
 [u][b][size=90]ACTIVITIES[/size][/b]____________________________________________________________________________[/u]
