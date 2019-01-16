@@ -86,7 +86,7 @@ ${userContext.signature}[/center][/aligntable]
 };
 
 export const generateSearchWarrantTitle = (params, userContext) => {
-  return `[${params.affDivision || ""}] [${moment(params.date)
+  return `[${userContext.divisionAbbreviation || ""}] [${moment(params.date)
     .format("DD/MMM/YYYY")
     .toUpperCase()}] [${[
     userContext.firstName.substring(0, 1)
