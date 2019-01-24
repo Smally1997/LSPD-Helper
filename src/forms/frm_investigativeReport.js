@@ -34,7 +34,7 @@ const victimsString = victims => {
 const suspectVehiclesString = suspectVehicles => {
   let str = ``;
   suspectVehicles.forEach(vehicle => {
-    str += `[size=85][b]MAKE & MODEL[/b][/size] ${vehicle.makeModel || ""}
+    str += `[size=85][b]MAKE & MODEL[/b][/size] ${vehicle.makeAndModel || ""}
 [size=85][b]TYPE[/b][/size] ${vehicle.type || ""}
 [size=85][b]COLOR(S)[/b][/size] ${vehicle.color || ""}
 [size=85][b]LIC. NO.[/b][/size] ${vehicle.index || ""}

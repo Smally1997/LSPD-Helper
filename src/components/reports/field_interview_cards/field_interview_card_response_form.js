@@ -81,6 +81,7 @@ class FieldInterviewCardResponseForm extends Component {
             <textarea
               className="form-control text-area"
               id="narrative"
+              placeholder="Reason for contact, details of contact, information gathered, disposition, etc."
               rows="12"
               value={this.state.narrative}
               onChange={e => this.handleFormInput(e)}

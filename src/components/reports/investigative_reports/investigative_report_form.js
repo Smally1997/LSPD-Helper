@@ -157,7 +157,6 @@ class InvestigativeReportForm extends Component {
       }));
     } else if (id.includes("narrative-")) {
       const field = id.substring(id.indexOf("-") + 1);
-      console.log(field);
       const index = id.substring(id.indexOf("_") + 1);
       let { narrative } = this.state;
       narrative[field] = value;
@@ -492,10 +491,12 @@ class InvestigativeReportForm extends Component {
                       type="text"
                       className="form-control"
                       id="modusOperandi"
-                      placeholder="DESCRIBE THE SUSPECT'S ACTIONS IN BRIEF PHRASES, INCLUDING WEAPON USED."
                       value={this.state.modusOperandi}
                       onChange={e => this.handleFormInput(e)}
                     />
+                    <small className="form-text text-muted">
+                      {`DESCRIBE THE SUSPECT'S ACTIONS IN BRIEF PHRASES, INCLUDING WEAPON USED.`}
+                    </small>
                   </div>
                 </div>
                 <h4>Victims</h4>
@@ -565,9 +566,11 @@ class InvestigativeReportForm extends Component {
                       className="form-control"
                       id="narrative-sourceOfActivity"
                       value={this.state.narrative.sourceOfActivity}
-                      placeholder="On (m-d-yy) at approximately (0000) hours, my partner Officer (Last) #(serial) and I, Officer (Last) #(serial), were assigned to unit (callsign), (Division). We were working in (full uniform/plainclothes/undercover) in a (marked/unmarked/undercover) police vehicle. We (received a radio call/were on patrol when we observed/were flagged down by a citizen/etc.) regarding a (type of crime) at (address)."
                       onChange={e => this.handleFormInput(e)}
                     />
+                    <small className="form-text text-muted">
+                      {`On (m-d-yy) at approximately (0000) hours, my partner Rank (Last Name) #(serial) and I, Rank (Last Name) #(serial), were assigned to unit (callsign), (Division). We were working in (full uniform/plainclothes/undercover) in a (marked/unmarked/undercover) police vehicle. We (received a radio call/were on patrol when we observed/were flagged down by a citizen/etc.) regarding a (type of crime) at (address).`}
+                    </small>
                   </div>
                   <div className="form-group col-xs-12">
                     <label htmlFor="narrative-investigation">
@@ -577,9 +580,11 @@ class InvestigativeReportForm extends Component {
                       className="form-control"
                       id="narrative-investigation"
                       value={this.state.narrative.investigation}
-                      placeholder="Upon arrival, (all investigatory steps taken)."
                       onChange={e => this.handleFormInput(e)}
                     />
+                    <small className="form-text text-muted">
+                      {`Upon arrival, (all investigatory steps taken).`}
+                    </small>
                   </div>
                   <div className="form-group col-xs-12">
                     <label htmlFor="narrative-injuriesMedicalTreatment">
@@ -589,9 +594,11 @@ class InvestigativeReportForm extends Component {
                       className="form-control"
                       id="narrative-injuriesMedicalTreatment"
                       value={this.state.narrative.injuriesMedicalTreatment}
-                      placeholder="The victim suffered (injuries). The victim was (treated on scene/transported to hospital). The victim was (admitted to hospital/discharged/deceased/etc.)."
                       onChange={e => this.handleFormInput(e)}
                     />
+                    <small className="form-text text-muted">
+                      {`The victim suffered (injuries). The victim was (treated on scene/transported to hospital). The victim was (admitted to hospital/discharged/deceased/etc.)`}
+                    </small>
                   </div>
                   <div className="form-group col-xs-12">
                     <label>Photographs</label>
