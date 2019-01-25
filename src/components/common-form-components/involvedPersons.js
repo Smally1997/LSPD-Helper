@@ -98,11 +98,11 @@ export const InvolvedPersons = ({
             />
           </div>
           <div className="form-group col-xs-12 col-sm-4">
-            <label htmlFor={`involvedPerson-phone${index}`}>Phone</label>
+            <label htmlFor={`involvedPerson-phone_${index}`}>Phone</label>
             <input
               type="text"
               className="form-control"
-              id={`involvedPerson-phone${index}`}
+              id={`involvedPerson-phone_${index}`}
               value={involvedPersons[index].phone}
               onChange={e => handleFormInput(e)}
             />
