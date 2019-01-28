@@ -128,11 +128,11 @@ export const Suspects = ({
             />
           </div>
           <div className="form-group col-xs-12 col-sm-4">
-            <label htmlFor={`suspect-known_info_${index}`}>Known Info</label>
+            <label htmlFor={`suspect-knownInfo_${index}`}>Known Info</label>
             <input
               type="text"
               className="form-control"
-              id={`suspect-known_info_${index}`}
+              id={`suspect-knownInfo_${index}`}
               value={suspects[index].knownInfo}
               placeholder="Verbal Threats/Bodily Force/Simulated Gun/Gun/Knife/etc"
               onChange={e => handleFormInput(e)}

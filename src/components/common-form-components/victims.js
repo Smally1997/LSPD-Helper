@@ -63,7 +63,7 @@ export const Victims = ({
           <input
             type="text"
             className="form-control"
-            id={`victimAlias_${index}`}
+            id={`victim-alias_${index}`}
             value={victims[index].alias}
             onChange={e => handleFormInput(e)}
           />
