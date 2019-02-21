@@ -52,6 +52,7 @@ const Navbar = ({ user }) => {
           link={"/"}
         />
       </div>
+
       <div className="user">
         <NavbarSection
           text={"USER"}

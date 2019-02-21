@@ -61,7 +61,11 @@ ${chargeString(params.charges || "")}
 ${evidenceString(params.evidence || "")}
 [/list]
 
-[b]Signature:[/b] ${userContext.signature}
+[b]Signature:[/b] ${
+    userContext.signatureType == "text"
+      ? userContext.signature
+      : `[img]${userContext.signature}[/img]`
+  }
 [/divbox]`;
   return frmString;
 };

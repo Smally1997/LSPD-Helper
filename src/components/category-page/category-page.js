@@ -14,10 +14,12 @@ class CategoryPage extends Component {
     return (
       <div id="page">
         <h1 className="header">{pageTitle}</h1>
-        <FormSelector
-          pageForms={pageForms}
-          changeActiveForm={changeActiveForm}
-        />
+        {pageForms != null && changeActiveForm != null && (
+          <FormSelector
+            pageForms={pageForms}
+            changeActiveForm={changeActiveForm}
+          />
+        )}
       </div>
     );
   }

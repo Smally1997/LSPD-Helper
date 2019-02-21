@@ -77,7 +77,11 @@ ${factString(params.facts)}
 ${userContext.firstName} ${
     userContext.lastName
   }[/center][/aligntable][aligntable=right,0,0,50,0,0,#FFFFFF][center][b][u]Signature of Affiant:[/u][/b]
-${userContext.signature}[/center][/aligntable]
+${
+    userContext.signatureType == "text"
+      ? userContext.signature
+      : `[img]${userContext.signature}[/img]`
+  }[/center][/aligntable]
 
 [color=white][SPACER][/color]
 [color=white][SPACER][/color]
