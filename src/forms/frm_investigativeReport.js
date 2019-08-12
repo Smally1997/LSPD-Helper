@@ -112,7 +112,7 @@ export const generateInvestigativeReport = (params, userContext) => {
 [size=110]INVESTIGATIVE REPORT[/size][/b][/center][size=85][b]REPORT OF[/b][/size] ${crimeString(
     params.charges
   )}
-[size=85][b]IR #[/b][/size] Topic ID
+[size=85][b]DR #[/b][/size] Topic ID
 [size=85][b]FIRST RESPONDER[/b][/size] ${userContext.lastName ||
     ""} (${userContext.serial || ""})
 [size=85][b]INV. DIVISION[/b][/size]
