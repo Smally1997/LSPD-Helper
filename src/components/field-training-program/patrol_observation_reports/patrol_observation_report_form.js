@@ -463,10 +463,9 @@ class PatrolObservationReportFrom extends Component {
                 return (
                   <div key={incident.id}>
                     <NoteworthyIncident
-                      oocID={incident.id}
-                      oocLabel={incident.label}
-                      ratingValue={incident.value}
-
+                      id={incident.id}
+                      label={incident.label}
+                      value={incident.value}
                       handleFormInput={this.handleFormInput}
                     />
                   </div>
