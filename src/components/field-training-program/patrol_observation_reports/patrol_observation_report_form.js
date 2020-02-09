@@ -84,6 +84,59 @@ const NoteworthyIncident = ({ id, value, label, handleFormInput }) => {
   );
 };
 
+const OOC = ({
+  oocID,
+  oocLabel,
+  ratingValue,
+  explanationValue,
+  handleFormInput
+}) => {
+  return (
+    <div className="form-row">
+      <div className="from-group col-xs-12">
+        <label>{oocLabel}</label>
+      </div>
+      <div className="form-group col-xs-12 col-sm-6">
+        <div className="input-group">
+          <div className="input-group-addon">
+            <span className="input-group-text" htmlFor={`${oocID}_rating`}>
+              Rating
+            </span>
+          </div>
+          <select
+            className="custom-select form-control"
+            id={`${oocID}_rating`}
+            onChange={e => handleFormInput(e)}
+            value={ratingValue}
+          >
+            <option value="CHOOSE ONE">CHOOSE ONE</option>
+            <option value="N/I">N/I</option>
+            <option value="C">C</option>
+            <option value="S">S</option>
+            <option value="N/O">N/O</option>
+          </select>
+        </div>
+      </div>
+      <div className="form-group col-xs-12 col-sm-6">
+        <div className="input-group">
+          <div className="input-group-addon">
+            <span className="input-group-text" htmlFor={`${oocID}_explanation`}>
+              Explanation
+            </span>
+          </div>
+          <input
+            type="text"
+            className="form-control"
+            id={`${oocID}_explanation`}
+            value={explanationValue}
+            onChange={e => handleFormInput(e)}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 class PatrolObservationReportFrom extends Component {
   constructor(props) {
     super(props);
@@ -122,6 +175,12 @@ class PatrolObservationReportFrom extends Component {
       criminalLaw_TRN: null,
       criminalProcedure_rating: null,
       criminalProcedure_TRN: null,
+      overallMindset_rating: null,
+      overallMindset_explanation: null,
+      characterPortrayal_rating: null,
+      characterPortrayal_explanation: null,
+      passiveRoleplay_rating: null,
+      passiveRoleplay_explanation: null,
       vehicleStop: false,
       highRiskStop: false,
       vehiclePursuit: false,
@@ -289,6 +348,28 @@ class PatrolObservationReportFrom extends Component {
         value: this.state.largeScaleSituation
       }
     ];
+
+    const OOCs = [
+      {
+        id: "overallMindset",
+        label: "Overall Mindset",
+        ratingValue: this.state.overallMindset_rating,
+        explanationValue: this.state.overallMindset_explanation
+      },
+      {
+        id: "characterPortrayal",
+        label: "Character Portrayal",
+        ratingValue: this.state.characterPortrayal_rating,
+        explanationValue: this.state.characterPortrayal_explanation
+      },
+      {
+        id: "passiveRoleplay",
+        label: "Passive Roleplay",
+        ratingValue: this.state.passiveRoleplay_rating,
+        explanationValue: this.state.pass
+      }
+    ];
+
     return (
       <UserContextConsumer>
         {({ user }) => {
@@ -363,14 +444,29 @@ class PatrolObservationReportFrom extends Component {
                   </div>
                 );
               })}
+              <h4> (( Out Of Character ))</h4>
+              {OOCs.map(i => {
+                return(
+                  <div key={i.id}>
+                    <OOC
+                      oocID={i.id}
+                      oocLabel={i.label}
+                      ratingValue={i.ratingValue}
+                      explanationValue={i.explanationValue}
+                      handleFormInput={this.handleFormInput}
+                    />
+                  </div>
+                );
+              })}
               <h4>Noteworthy Incidents</h4>
               {NoteworthyIncidents.map(incident => {
                 return (
                   <div key={incident.id}>
                     <NoteworthyIncident
-                      id={incident.id}
-                      label={incident.label}
-                      value={incident.value}
+                      oocID={incident.id}
+                      oocLabel={incident.label}
+                      ratingValue={incident.value}
+
                       handleFormInput={this.handleFormInput}
                     />
                   </div>
