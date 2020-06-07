@@ -3,12 +3,12 @@ import { UserContextConsumer } from "../../../UserContext.js";
 import { BBCode } from "../../common-form-components/common_form_components.js";
 import {
   generatePatrolObservationReport,
-  generatePatrolObservationReportTitle
+  generatePatrolObservationReportTitle,
 } from "../../../forms/frm_patrolObservationReport.js";
 import "./patrol_observation_report_form.css";
 const {
   updateLocalStorage,
-  retrieveLocalStorage
+  retrieveLocalStorage,
 } = require("../../../scripts/localStorageForms.js");
 
 const PerformanceCategory = ({
@@ -16,7 +16,8 @@ const PerformanceCategory = ({
   categoryID,
   ratingValue,
   trnValue,
-  handleFormInput
+  trnOptions,
+  handleFormInput,
 }) => {
   return (
     <div className="form-row">
@@ -33,7 +34,7 @@ const PerformanceCategory = ({
           <select
             className="custom-select form-control"
             id={`${categoryID}_rating`}
-            onChange={e => handleFormInput(e)}
+            onChange={(e) => handleFormInput(e)}
             value={ratingValue}
           >
             <option value="CHOOSE ONE">CHOOSE ONE</option>
@@ -51,14 +52,25 @@ const PerformanceCategory = ({
               TRN
             </span>
           </div>
-          <input
+          <select
+            className="custom-select form-control"
+            id={`${categoryID}_TRN`}
+            onChange={(e) => handleFormInput(e)}
+            value={trnValue}
+          >
+            <option value="CHOOSE ONE">CHOOSE ONE</option>
+            {trnOptions.map((option) => {
+              return <option value={option.value}>{option.description}</option>;
+            })}
+          </select>
+          {/* <input
             type="text"
             className="form-control"
             id={`${categoryID}_TRN`}
             placeholder="0000"
             value={trnValue}
-            onChange={e => handleFormInput(e)}
-          />
+            onChange={(e) => handleFormInput(e)}
+          /> */}
         </div>
       </div>
     </div>
@@ -74,7 +86,7 @@ const NoteworthyIncident = ({ id, value, label, handleFormInput }) => {
           type="checkbox"
           checked={value}
           id={id}
-          onChange={e => handleFormInput(e)}
+          onChange={(e) => handleFormInput(e)}
         />
         <label className="form-check-label" htmlFor="vehicleStop">
           {label}
@@ -89,7 +101,7 @@ const OOC = ({
   oocLabel,
   ratingValue,
   explanationValue,
-  handleFormInput
+  handleFormInput,
 }) => {
   return (
     <div className="form-row">
@@ -106,7 +118,7 @@ const OOC = ({
           <select
             className="custom-select form-control"
             id={`${oocID}_rating`}
-            onChange={e => handleFormInput(e)}
+            onChange={(e) => handleFormInput(e)}
             value={ratingValue}
           >
             <option value="CHOOSE ONE">CHOOSE ONE</option>
@@ -129,7 +141,7 @@ const OOC = ({
             className="form-control"
             id={`${oocID}_explanation`}
             value={explanationValue}
-            onChange={e => handleFormInput(e)}
+            onChange={(e) => handleFormInput(e)}
           />
         </div>
       </div>
@@ -186,7 +198,7 @@ class PatrolObservationReportFrom extends Component {
       vehiclePursuit: false,
       footPursuit: false,
       largeScaleSituation: false,
-      comments: null
+      comments: null,
     };
     this.handleFormInput = this.handleFormInput.bind(this);
   }
@@ -215,138 +227,145 @@ class PatrolObservationReportFrom extends Component {
     const ForumPostLinks = [
       {
         link: "https://pd.lsgov.io/forum/posting.php?mode=post&f=2665",
-        linkText: "Create New PO I Topic"
+        linkText: "Create New PO I Topic",
       },
       {
-        link: `https://pd.lsgov.io/forum/search.php?keywords=${
-          this.state.probFirstName
-        }+${
-          this.state.probLastName
-        }&terms=all&author=&fid%5B%5D=2665&sc=1&sf=titleonly&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`,
-        linkText: "Search for PO I Topic"
-      }
+        link: `https://pd.lsgov.io/forum/search.php?keywords=${this.state.probFirstName}+${this.state.probLastName}&terms=all&author=&fid%5B%5D=2665&sc=1&sf=titleonly&sr=posts&sk=t&sd=d&st=0&ch=300&t=0&submit=Search`,
+        linkText: "Search for PO I Topic",
+      },
     ];
     const PerformanceCategories = [
       {
         categoryLabel: "1. Acceptance of Criticism / Feedback",
         categoryID: "acceptanceOfFeedback",
         ratingValue: this.state.acceptanceOfFeedback_rating,
-        trnValue: this.state.acceptanceOfFeedback_TRN
+        trnValue: this.state.acceptanceOfFeedback_TRN,
+        trnOptions: [
+          {
+            description:
+              "[0101] Rationalizes mistakes, denies that errors were made.",
+            value: "0101",
+          },
+          {
+            description: "[0102] Fails to make corrections.",
+            value: "0102",
+          },
+        ],
       },
-      {
-        categoryLabel: "2. Relationship with Citizens",
-        categoryID: "relationshipWithCitizens",
-        ratingValue: this.state.relationshipWithCitizens_rating,
-        trnValue: this.state.relationshipWithCitizens_TRN
-      },
-      {
-        categoryLabel: "3. General Appearance",
-        categoryID: "generalAppearence",
-        ratingValue: this.state.generalAppearence_rating,
-        trnValue: this.state.generalAppearence_TRN
-      },
-      {
-        categoryLabel: "4. Driving Skill: Moderate Stress/Emergency",
-        categoryID: "drivingSkill",
-        ratingValue: this.state.drivingSkill_rating,
-        trnValue: this.state.drivingSkill_TRN
-      },
-      {
-        categoryLabel: "5. Field Performance",
-        categoryID: "fieldPerformance",
-        ratingValue: this.state.fieldPerformance_rating,
-        trnValue: this.state.fieldPerformance_TRN
-      },
-      {
-        categoryLabel: "6. Investigative Skills",
-        categoryID: "investigativeSkills",
-        ratingValue: this.state.investigativeSkills_rating,
-        trnValue: this.state.investigativeSkills_TRN
-      },
-      {
-        categoryLabel: "7. Interview Skills",
-        categoryID: "interviewSkills",
-        ratingValue: this.state.interviewSkills_rating,
-        trnValue: this.state.interviewSkills_TRN
-      },
-      {
-        categoryLabel: "8. Officer Safety",
-        categoryID: "officerSafety",
-        ratingValue: this.state.officerSafety_rating,
-        trnValue: this.state.officerSafety_TRN
-      },
-      {
-        categoryLabel: "9. Self-Initiated Field Activity",
-        categoryID: "selfInitiatedFieldActivity",
-        ratingValue: this.state.selfInitiatedFieldActivity_rating,
-        trnValue: this.state.selfInitiatedFieldActivity_TRN
-      },
-      {
-        categoryLabel: "10. Decision Making / Problem Solving",
-        categoryID: "decisionMakingProblemSolving",
-        ratingValue: this.state.decisionMakingProblemSolving_rating,
-        trnValue: this.state.decisionMakingProblemSolving_TRN
-      },
-      {
-        categoryLabel: "11. Vehicle / Pedestrian Stops",
-        categoryID: "vehiclePedestrianStops",
-        ratingValue: this.state.vehiclePedestrianStops_rating,
-        trnValue: this.state.vehiclePedestrianStops_TRN
-      },
-      {
-        categoryLabel: "12. Radio Communication",
-        categoryID: "radioCommunications",
-        ratingValue: this.state.radioCommunications_rating,
-        trnValue: this.state.radioCommunications_TRN
-      },
-      {
-        categoryLabel: "13. Department Policy",
-        categoryID: "departmentPolicy",
-        ratingValue: this.state.departmentPolicy_rating,
-        trnValue: this.state.departmentPolicy_TRN
-      },
-      {
-        categoryLabel: "14. Criminal Law",
-        categoryID: "criminalLaw",
-        ratingValue: this.state.criminalLaw_rating,
-        trnValue: this.state.criminalLaw_TRN
-      },
-      {
-        categoryLabel: "15. Criminal Procedure",
-        categoryID: "criminalProcedure",
-        ratingValue: this.state.criminalProcedure_rating,
-        trnValue: this.state.criminalProcedure_TRN
-      }
+      // {
+      //   categoryLabel: "2. Relationship with Citizens",
+      //   categoryID: "relationshipWithCitizens",
+      //   ratingValue: this.state.relationshipWithCitizens_rating,
+      //   trnValue: this.state.relationshipWithCitizens_TRN,
+      // },
+      // {
+      //   categoryLabel: "3. General Appearance",
+      //   categoryID: "generalAppearence",
+      //   ratingValue: this.state.generalAppearence_rating,
+      //   trnValue: this.state.generalAppearence_TRN,
+      // },
+      // {
+      //   categoryLabel: "4. Driving Skill: Moderate Stress/Emergency",
+      //   categoryID: "drivingSkill",
+      //   ratingValue: this.state.drivingSkill_rating,
+      //   trnValue: this.state.drivingSkill_TRN,
+      // },
+      // {
+      //   categoryLabel: "5. Field Performance",
+      //   categoryID: "fieldPerformance",
+      //   ratingValue: this.state.fieldPerformance_rating,
+      //   trnValue: this.state.fieldPerformance_TRN,
+      // },
+      // {
+      //   categoryLabel: "6. Investigative Skills",
+      //   categoryID: "investigativeSkills",
+      //   ratingValue: this.state.investigativeSkills_rating,
+      //   trnValue: this.state.investigativeSkills_TRN,
+      // },
+      // {
+      //   categoryLabel: "7. Interview Skills",
+      //   categoryID: "interviewSkills",
+      //   ratingValue: this.state.interviewSkills_rating,
+      //   trnValue: this.state.interviewSkills_TRN,
+      // },
+      // {
+      //   categoryLabel: "8. Officer Safety",
+      //   categoryID: "officerSafety",
+      //   ratingValue: this.state.officerSafety_rating,
+      //   trnValue: this.state.officerSafety_TRN,
+      // },
+      // {
+      //   categoryLabel: "9. Self-Initiated Field Activity",
+      //   categoryID: "selfInitiatedFieldActivity",
+      //   ratingValue: this.state.selfInitiatedFieldActivity_rating,
+      //   trnValue: this.state.selfInitiatedFieldActivity_TRN,
+      // },
+      // {
+      //   categoryLabel: "10. Decision Making / Problem Solving",
+      //   categoryID: "decisionMakingProblemSolving",
+      //   ratingValue: this.state.decisionMakingProblemSolving_rating,
+      //   trnValue: this.state.decisionMakingProblemSolving_TRN,
+      // },
+      // {
+      //   categoryLabel: "11. Vehicle / Pedestrian Stops",
+      //   categoryID: "vehiclePedestrianStops",
+      //   ratingValue: this.state.vehiclePedestrianStops_rating,
+      //   trnValue: this.state.vehiclePedestrianStops_TRN,
+      // },
+      // {
+      //   categoryLabel: "12. Radio Communication",
+      //   categoryID: "radioCommunications",
+      //   ratingValue: this.state.radioCommunications_rating,
+      //   trnValue: this.state.radioCommunications_TRN,
+      // },
+      // {
+      //   categoryLabel: "13. Department Policy",
+      //   categoryID: "departmentPolicy",
+      //   ratingValue: this.state.departmentPolicy_rating,
+      //   trnValue: this.state.departmentPolicy_TRN,
+      // },
+      // {
+      //   categoryLabel: "14. Criminal Law",
+      //   categoryID: "criminalLaw",
+      //   ratingValue: this.state.criminalLaw_rating,
+      //   trnValue: this.state.criminalLaw_TRN,
+      // },
+      // {
+      //   categoryLabel: "15. Criminal Procedure",
+      //   categoryID: "criminalProcedure",
+      //   ratingValue: this.state.criminalProcedure_rating,
+      //   trnValue: this.state.criminalProcedure_TRN,
+      // },
     ];
 
     const NoteworthyIncidents = [
       {
         id: "vehicleStop",
         label: "Vehicle Stop(s)",
-        value: this.state.vehicleStop
+        value: this.state.vehicleStop,
       },
       {
         id: "highRiskStop",
         label: "High Risk Stop(s)",
-        value: this.state.highRiskStop
+        value: this.state.highRiskStop,
       },
       {
         id: "vehiclePursuit",
         label: "Vehicle Pursuit(s)",
-        value: this.state.vehiclePursuit
+        value: this.state.vehiclePursuit,
       },
 
       {
         id: "footPursuit",
         label: "Foot Pursuit(s)",
-        value: this.state.footPursuit
+        value: this.state.footPursuit,
       },
 
       {
         id: "largeScaleSituation",
         label: "Large Scale Situation(s)",
-        value: this.state.largeScaleSituation
-      }
+        value: this.state.largeScaleSituation,
+      },
     ];
 
     const OOCs = [
@@ -354,20 +373,20 @@ class PatrolObservationReportFrom extends Component {
         id: "overallMindset",
         label: "Overall Mindset",
         ratingValue: this.state.overallMindset_rating,
-        explanationValue: this.state.overallMindset_explanation
+        explanationValue: this.state.overallMindset_explanation,
       },
       {
         id: "characterPortrayal",
         label: "Character Portrayal",
         ratingValue: this.state.characterPortrayal_rating,
-        explanationValue: this.state.characterPortrayal_explanation
+        explanationValue: this.state.characterPortrayal_explanation,
       },
       {
         id: "passiveRoleplay",
         label: "Passive Roleplay",
         ratingValue: this.state.passiveRoleplay_rating,
-        explanationValue: this.state.pass
-      }
+        explanationValue: this.state.pass,
+      },
     ];
 
     return (
@@ -393,7 +412,7 @@ class PatrolObservationReportFrom extends Component {
                     className="form-control"
                     id="probFirstName"
                     value={this.state.probFirstName}
-                    onChange={e => this.handleFormInput(e)}
+                    onChange={(e) => this.handleFormInput(e)}
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-3">
@@ -403,7 +422,7 @@ class PatrolObservationReportFrom extends Component {
                     className="form-control"
                     id="probLastName"
                     value={this.state.probLastName}
-                    onChange={e => this.handleFormInput(e)}
+                    onChange={(e) => this.handleFormInput(e)}
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-3">
@@ -413,7 +432,7 @@ class PatrolObservationReportFrom extends Component {
                     className="form-control"
                     id="date"
                     value={this.state.date}
-                    onChange={e => this.handleFormInput(e)}
+                    onChange={(e) => this.handleFormInput(e)}
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-3">
@@ -426,12 +445,12 @@ class PatrolObservationReportFrom extends Component {
                     className="form-control"
                     id="phase"
                     value={this.state.phase}
-                    onChange={e => this.handleFormInput(e)}
+                    onChange={(e) => this.handleFormInput(e)}
                   />
                 </div>
               </div>
               <h4>Performance Categories</h4>
-              {PerformanceCategories.map(category => {
+              {PerformanceCategories.map((category) => {
                 return (
                   <div key={category.categoryID}>
                     <PerformanceCategory
@@ -439,14 +458,15 @@ class PatrolObservationReportFrom extends Component {
                       categoryLabel={category.categoryLabel}
                       ratingValue={category.ratingValue}
                       trnValue={category.trnValue}
+                      trnOptions={category.trnOptions}
                       handleFormInput={this.handleFormInput}
                     />
                   </div>
                 );
               })}
               <h4> (( Out Of Character ))</h4>
-              {OOCs.map(i => {
-                return(
+              {OOCs.map((i) => {
+                return (
                   <div key={i.id}>
                     <OOC
                       oocID={i.id}
@@ -459,7 +479,7 @@ class PatrolObservationReportFrom extends Component {
                 );
               })}
               <h4>Noteworthy Incidents</h4>
-              {NoteworthyIncidents.map(incident => {
+              {NoteworthyIncidents.map((incident) => {
                 return (
                   <div key={incident.id}>
                     <NoteworthyIncident
@@ -480,7 +500,7 @@ class PatrolObservationReportFrom extends Component {
                     id="comments"
                     rows="12"
                     value={this.state.comments}
-                    onChange={e => this.handleFormInput(e)}
+                    onChange={(e) => this.handleFormInput(e)}
                   />
                 </div>
               </div>
