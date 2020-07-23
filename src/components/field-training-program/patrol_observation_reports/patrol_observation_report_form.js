@@ -16,7 +16,6 @@ const PerformanceCategory = ({
   categoryID,
   ratingValue,
   trnValue,
-  trnOptions,
   handleFormInput,
 }) => {
   return (
@@ -52,25 +51,14 @@ const PerformanceCategory = ({
               TRN
             </span>
           </div>
-          <select
-            className="custom-select form-control"
-            id={`${categoryID}_TRN`}
-            onChange={(e) => handleFormInput(e)}
-            value={trnValue}
-          >
-            <option value="CHOOSE ONE">CHOOSE ONE</option>
-            {trnOptions.map((option) => {
-              return <option value={option.value}>{option.description}</option>;
-            })}
-          </select>
-          {/* <input
+          <input
             type="text"
             className="form-control"
             id={`${categoryID}_TRN`}
             placeholder="0000"
             value={trnValue}
             onChange={(e) => handleFormInput(e)}
-          /> */}
+          />
         </div>
       </div>
     </div>
@@ -149,6 +137,29 @@ const OOC = ({
   );
 };
 
+const StudentPhase = ({ phase, handleFormInput }) => {
+  return (
+    <div className="form-row">
+      <div className="from-group col-xs-12">
+        <label>Sutdent Phase</label>
+      </div>
+      <div className="form-group col-xs-12">
+        <select
+          className="custom-select form-control"
+          id="phase"
+          onChange={(e) => handleFormInput(e)}
+          value={phase}
+        >
+          <option value="CHOOSE ONE">CHOOSE ONE</option>
+          <option value="II-1">II-1</option>
+          <option value="II=2">II-2</option>
+          <option value="III">III</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+
 class PatrolObservationReportFrom extends Component {
   constructor(props) {
     super(props);
@@ -203,6 +214,8 @@ class PatrolObservationReportFrom extends Component {
     this.handleFormInput = this.handleFormInput.bind(this);
   }
   handleFormInput(e) {
+    console.log(e);
+
     const { id, value, checked, type } = e.target;
     if (type === "checkbox") {
       return this.setState({ [id]: checked });
@@ -240,102 +253,91 @@ class PatrolObservationReportFrom extends Component {
         categoryID: "acceptanceOfFeedback",
         ratingValue: this.state.acceptanceOfFeedback_rating,
         trnValue: this.state.acceptanceOfFeedback_TRN,
-        trnOptions: [
-          {
-            description:
-              "[0101] Rationalizes mistakes, denies that errors were made.",
-            value: "0101",
-          },
-          {
-            description: "[0102] Fails to make corrections.",
-            value: "0102",
-          },
-        ],
       },
-      // {
-      //   categoryLabel: "2. Relationship with Citizens",
-      //   categoryID: "relationshipWithCitizens",
-      //   ratingValue: this.state.relationshipWithCitizens_rating,
-      //   trnValue: this.state.relationshipWithCitizens_TRN,
-      // },
-      // {
-      //   categoryLabel: "3. General Appearance",
-      //   categoryID: "generalAppearence",
-      //   ratingValue: this.state.generalAppearence_rating,
-      //   trnValue: this.state.generalAppearence_TRN,
-      // },
-      // {
-      //   categoryLabel: "4. Driving Skill: Moderate Stress/Emergency",
-      //   categoryID: "drivingSkill",
-      //   ratingValue: this.state.drivingSkill_rating,
-      //   trnValue: this.state.drivingSkill_TRN,
-      // },
-      // {
-      //   categoryLabel: "5. Field Performance",
-      //   categoryID: "fieldPerformance",
-      //   ratingValue: this.state.fieldPerformance_rating,
-      //   trnValue: this.state.fieldPerformance_TRN,
-      // },
-      // {
-      //   categoryLabel: "6. Investigative Skills",
-      //   categoryID: "investigativeSkills",
-      //   ratingValue: this.state.investigativeSkills_rating,
-      //   trnValue: this.state.investigativeSkills_TRN,
-      // },
-      // {
-      //   categoryLabel: "7. Interview Skills",
-      //   categoryID: "interviewSkills",
-      //   ratingValue: this.state.interviewSkills_rating,
-      //   trnValue: this.state.interviewSkills_TRN,
-      // },
-      // {
-      //   categoryLabel: "8. Officer Safety",
-      //   categoryID: "officerSafety",
-      //   ratingValue: this.state.officerSafety_rating,
-      //   trnValue: this.state.officerSafety_TRN,
-      // },
-      // {
-      //   categoryLabel: "9. Self-Initiated Field Activity",
-      //   categoryID: "selfInitiatedFieldActivity",
-      //   ratingValue: this.state.selfInitiatedFieldActivity_rating,
-      //   trnValue: this.state.selfInitiatedFieldActivity_TRN,
-      // },
-      // {
-      //   categoryLabel: "10. Decision Making / Problem Solving",
-      //   categoryID: "decisionMakingProblemSolving",
-      //   ratingValue: this.state.decisionMakingProblemSolving_rating,
-      //   trnValue: this.state.decisionMakingProblemSolving_TRN,
-      // },
-      // {
-      //   categoryLabel: "11. Vehicle / Pedestrian Stops",
-      //   categoryID: "vehiclePedestrianStops",
-      //   ratingValue: this.state.vehiclePedestrianStops_rating,
-      //   trnValue: this.state.vehiclePedestrianStops_TRN,
-      // },
-      // {
-      //   categoryLabel: "12. Radio Communication",
-      //   categoryID: "radioCommunications",
-      //   ratingValue: this.state.radioCommunications_rating,
-      //   trnValue: this.state.radioCommunications_TRN,
-      // },
-      // {
-      //   categoryLabel: "13. Department Policy",
-      //   categoryID: "departmentPolicy",
-      //   ratingValue: this.state.departmentPolicy_rating,
-      //   trnValue: this.state.departmentPolicy_TRN,
-      // },
-      // {
-      //   categoryLabel: "14. Criminal Law",
-      //   categoryID: "criminalLaw",
-      //   ratingValue: this.state.criminalLaw_rating,
-      //   trnValue: this.state.criminalLaw_TRN,
-      // },
-      // {
-      //   categoryLabel: "15. Criminal Procedure",
-      //   categoryID: "criminalProcedure",
-      //   ratingValue: this.state.criminalProcedure_rating,
-      //   trnValue: this.state.criminalProcedure_TRN,
-      // },
+      {
+        categoryLabel: "2. Relationship with Citizens",
+        categoryID: "relationshipWithCitizens",
+        ratingValue: this.state.relationshipWithCitizens_rating,
+        trnValue: this.state.relationshipWithCitizens_TRN,
+      },
+      {
+        categoryLabel: "3. General Appearance",
+        categoryID: "generalAppearence",
+        ratingValue: this.state.generalAppearence_rating,
+        trnValue: this.state.generalAppearence_TRN,
+      },
+      {
+        categoryLabel: "4. Driving Skill: Moderate Stress/Emergency",
+        categoryID: "drivingSkill",
+        ratingValue: this.state.drivingSkill_rating,
+        trnValue: this.state.drivingSkill_TRN,
+      },
+      {
+        categoryLabel: "5. Field Performance",
+        categoryID: "fieldPerformance",
+        ratingValue: this.state.fieldPerformance_rating,
+        trnValue: this.state.fieldPerformance_TRN,
+      },
+      {
+        categoryLabel: "6. Investigative Skills",
+        categoryID: "investigativeSkills",
+        ratingValue: this.state.investigativeSkills_rating,
+        trnValue: this.state.investigativeSkills_TRN,
+      },
+      {
+        categoryLabel: "7. Interview Skills",
+        categoryID: "interviewSkills",
+        ratingValue: this.state.interviewSkills_rating,
+        trnValue: this.state.interviewSkills_TRN,
+      },
+      {
+        categoryLabel: "8. Officer Safety",
+        categoryID: "officerSafety",
+        ratingValue: this.state.officerSafety_rating,
+        trnValue: this.state.officerSafety_TRN,
+      },
+      {
+        categoryLabel: "9. Self-Initiated Field Activity",
+        categoryID: "selfInitiatedFieldActivity",
+        ratingValue: this.state.selfInitiatedFieldActivity_rating,
+        trnValue: this.state.selfInitiatedFieldActivity_TRN,
+      },
+      {
+        categoryLabel: "10. Decision Making / Problem Solving",
+        categoryID: "decisionMakingProblemSolving",
+        ratingValue: this.state.decisionMakingProblemSolving_rating,
+        trnValue: this.state.decisionMakingProblemSolving_TRN,
+      },
+      {
+        categoryLabel: "11. Vehicle / Pedestrian Stops",
+        categoryID: "vehiclePedestrianStops",
+        ratingValue: this.state.vehiclePedestrianStops_rating,
+        trnValue: this.state.vehiclePedestrianStops_TRN,
+      },
+      {
+        categoryLabel: "12. Radio Communication",
+        categoryID: "radioCommunications",
+        ratingValue: this.state.radioCommunications_rating,
+        trnValue: this.state.radioCommunications_TRN,
+      },
+      {
+        categoryLabel: "13. Department Policy",
+        categoryID: "departmentPolicy",
+        ratingValue: this.state.departmentPolicy_rating,
+        trnValue: this.state.departmentPolicy_TRN,
+      },
+      {
+        categoryLabel: "14. Criminal Law",
+        categoryID: "criminalLaw",
+        ratingValue: this.state.criminalLaw_rating,
+        trnValue: this.state.criminalLaw_TRN,
+      },
+      {
+        categoryLabel: "15. Criminal Procedure",
+        categoryID: "criminalProcedure",
+        ratingValue: this.state.criminalProcedure_rating,
+        trnValue: this.state.criminalProcedure_TRN,
+      },
     ];
 
     const NoteworthyIncidents = [
@@ -436,9 +438,9 @@ class PatrolObservationReportFrom extends Component {
                   />
                 </div>
                 <div className="form-group col-xs-12 col-sm-3">
-                  <label htmlFor="phase">FTP Phase</label>
+                  {/* <label htmlFor="phase">FTP Phase</label>
                   <input
-                    type="number"
+                    type="text"
                     min="1"
                     max="4"
                     step="1"
@@ -446,6 +448,10 @@ class PatrolObservationReportFrom extends Component {
                     id="phase"
                     value={this.state.phase}
                     onChange={(e) => this.handleFormInput(e)}
+                  /> */}
+                  <StudentPhase
+                    phase={this.state.phase}
+                    handleFormInput={this.handleFormInput}
                   />
                 </div>
               </div>
@@ -458,7 +464,6 @@ class PatrolObservationReportFrom extends Component {
                       categoryLabel={category.categoryLabel}
                       ratingValue={category.ratingValue}
                       trnValue={category.trnValue}
-                      trnOptions={category.trnOptions}
                       handleFormInput={this.handleFormInput}
                     />
                   </div>
